@@ -9,7 +9,7 @@ const DummyDataPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/dummy_data_view/');
+        const response = await fetch('http://127.0.0.1:8000/employees_by_query/');
         if (!response.ok) {
             console.log('ok')
           throw new Error('Network response was not ok');

@@ -87,10 +87,19 @@ WSGI_APPLICATION = 'proback.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'Caregenix',  # The name of your SQL Server database
+        'USER': '',  # Leave this empty for Windows Authentication
+        'PASSWORD': '',  # Leave this empty for Windows Authentication
+        'HOST': 'LAPTOP-QLPK4CVV\\SQLEXPRESS',  # Your SQL Server instance name
+        'PORT': '',  # SQL Server default port (empty if you use the default port)
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',  # Adjust this according to the installed driver
+            'trusted_connection': 'yes',  # Enables Windows Authentication
+        },
     }
 }
+
 
 
 # Password validation

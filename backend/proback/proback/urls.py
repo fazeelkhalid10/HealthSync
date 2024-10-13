@@ -21,5 +21,6 @@ from myapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
    path('dummy_data_view/',views.dummy_data_view,name="dummy_data_view"),
+   path('employees_by_query/', views.get_employees_by_query, name='employee-query-list')
     
 ]
