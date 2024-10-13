@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import MainPage from '../components/MainPage';
+import DiseaseDetection from '../components/DiseaseDetection';
 
 export default function HomePage() {
   return (
@@ -9,7 +10,8 @@ export default function HomePage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <MainPage />
-     
+      {/* <DiseaseDetection/>
+      */}
      {/* idher sirf pages likh ker test karli routing baad me karlenge */}
      
     </div>

@@ -33,7 +33,7 @@ export default function MainPage() {
               </Link>
               <ul className="d-flex align-items-center justify-content: flex-end">
                 <li><Link href="#hero" className="active">Home</Link></li>
-                <li><Link href="#about">Disease Detection</Link></li>
+                <li><Link href="/DiseaseDetection.js">Disease Detection</Link></li>
                 <li><Link href="#services">Find Doctor</Link></li>
                 <li><Link href="#departments">HealthTips</Link></li>
                 <li><Link href="#doctors">ChatBot</Link></li>
