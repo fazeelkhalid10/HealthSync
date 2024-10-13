@@ -1,0 +1,56 @@
+/* styles/Dashboard.module.css */
+
+.container {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+  }
+  
+  .sidebar {
+    width: 250px; /* Sidebar width */
+    background-color: #f7f7f7;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .menu {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .menu li {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .menu li:hover {
+    background-color: #e0e0e0; /* Hover effect */
+  }
+  
+  .active {
+    background-color: #007bff; /* Active tab color */
+    color: white; /* Active tab text color */
+  }
+  
+  .content {
+    flex: 1; /* Fill remaining space */
+    padding: 20px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th,
+  .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .table th {
+    background-color: #007bff; /* Table header color */
+    color: white; /* Table header text color */
+  }
+  

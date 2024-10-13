@@ -1,0 +1,179 @@
+/* styles/Signup.module.css */
+
+/* styles/Signup.module.css */
+
+/* Container for full-height and full-width */
+.container {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh; /* Full viewport height */
+    width: 100vw;  /* Full viewport width */
+}
+
+.left {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 50px;
+    position: relative; /* For image positioning */
+    overflow: hidden; /* Hide overflow for better aesthetics */
+}
+
+.right {
+    width: 50%;
+    background: linear-gradient(to right, #bdc4ca, #ddeff5); /* Gradient background */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    text-align: center; /* Center text in the right panel */
+}
+
+.logo {
+    width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 32px; /* Increased font size for visibility */
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+.subtitle {
+    font-size: 18px; /* Slightly larger subtitle */
+    margin-bottom: 30px;
+    color: #d1e8ff; /* Light color for better contrast */
+}
+
+.toggle {
+    display: flex;
+    margin-bottom: 20px; /* Space between toggle and form */
+}
+
+.tabButton {
+    background: transparent; /* Transparent background */
+    border: none; /* No border */
+    color: #fff; /* White text */
+    padding: 10px 20px; /* Padding for buttons */
+    cursor: pointer; /* Pointer cursor */
+    margin: 0 5px; /* Margin between buttons */
+    border-radius: 5px; /* Rounded corners */
+    transition: background 0.3s ease; /* Smooth transition for hover effect */
+    font-size: 16px; /* Increased font size */
+}
+
+.activeTab {
+    background-color: #ebedf0; /* Darker blue for active tab */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+color: black;
+     /* Subtle shadow for depth */
+}
+
+.form {
+    margin-top: 7px;
+    width: 100%;
+    max-width: 400px; /* Set max width for the form */
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+    padding: 20px; /* Padding inside the form */
+    border-radius: 10px; /* Rounded corners for the form */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Shadow for form depth */
+}
+
+.input {
+    width: 100%; /* Full width input fields */
+    padding: 10px; /* Padding inside the input */
+    margin-bottom: 15px; /* Add margin for input fields */
+    border: 1px solid #ccc; /* Lighter border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Larger font size for inputs */
+    color: #333; /* Darker text for better readability */
+    transition: border 0.3s ease; /* Smooth transition for border color */
+}
+
+.input:focus {
+    border-color: #007bff; /* Blue border on focus */
+    outline: none; /* Remove default outline */
+}
+
+.signupBtn {
+    width: 100%; /* Full width button */
+    padding: 10px; /* Padding inside the button */
+    background-color: #007bff; /* Blue button */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    color: white; /* White text */
+    font-size: 16px; /* Font size for button */
+    cursor: pointer; /* Pointer cursor */
+    transition: background 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
+
+.signupBtn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.createAccount {
+    margin-top: 20px;
+    text-align: center; /* Center the account link */
+}
+
+.createBtn {
+    border: 1px solid #007bff; /* Blue border */
+    padding: 10px;
+    border-radius: 5px;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.3s ease, color 0.3s ease; /* Smooth transitions */
+}
+
+.createBtn:hover {
+    background-color: #007bff; /* Change background on hover */
+    color: white; /* Change text color on hover */
+}
+
+.image {
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    object-fit: cover; /* Cover image */
+}
+
+  /* styles/Signup.module.css */
+
+.left {
+    width: 50%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    text-align: center; /* Center the text */
+  }
+  
+  .logo {
+    width: 150px; /* Adjust the size of your logo */
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .healthSyncTitle {
+    font-size: 24px; /* Title font size */
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .healthSyncDescription {
+    font-size: 16px; /* Description font size */
+    color: #666; /* Description text color */
+    margin-bottom: 30px;
+  }
+  
