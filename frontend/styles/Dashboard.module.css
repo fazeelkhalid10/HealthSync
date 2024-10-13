@@ -1,15 +1,14 @@
-/* styles/Dashboard.module.css */
-
 .container {
     display: flex;
-    height: 100vh; /* Full viewport height */
+    height: 100vh;
+    background-color: #eaeaea; /* Light grey background */
   }
   
   .sidebar {
-    width: 250px; /* Sidebar width */
-    background-color: #f7f7f7;
+    width: 250px;
+    background-color: #f4f4f4; /* Sidebar color */
     padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    border-right: 1px solid #ccc; /* Add a border for separation */
   }
   
   .menu {
@@ -18,39 +17,41 @@
   }
   
   .menu li {
-    padding: 10px 15px;
+    padding: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    border-radius: 5px; /* Rounded corners for menu items */
+    transition: background-color 0.3s; /* Smooth transition on hover */
   }
   
   .menu li:hover {
-    background-color: #e0e0e0; /* Hover effect */
+    background-color: #0070f3; /* Hover effect */
+    color: white; /* Text color for hover effect */
   }
   
-  .active {
-    background-color: #007bff; /* Active tab color */
-    color: white; /* Active tab text color */
+  .menu li.active {
+    background-color: #0070f3; /* Active tab color */
+    color: white; /* Text color for active tab */
   }
   
   .content {
-    flex: 1; /* Fill remaining space */
+    flex-grow: 1;
     padding: 20px;
+    background-color: #fff; /* Content area color */
   }
   
   .table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 15px; /* Space above the table */
   }
   
-  .table th,
-  .table td {
-    border: 1px solid #ddd;
-    padding: 8px;
+  .table th, .table td {
+    border: 1px solid #ccc;
+    padding: 10px;
     text-align: left;
   }
   
   .table th {
-    background-color: #007bff; /* Table header color */
-    color: white; /* Table header text color */
+    background-color: #f4f4f4; /* Header background */
   }
   
