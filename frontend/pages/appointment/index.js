@@ -1,17 +1,75 @@
 import { useState } from 'react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'; 
-
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
 
   return (
-    <div className="bg-white">
-      <header className="bg-blue-600 text-white p-5">
-        <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Oripio</h1>
+    <>
+    <header id="header" className="header sticky-top">
+        <div className="topbar d-flex align-items-center">
+          <div className="container d-flex justify-content-between">
+            <div className="contact-info d-flex align-items-center">
+              <i className="bi bi-envelope d-flex align-items-center">
+                <Link href="mailto:contact@example.com">HealthSync@gmail.com</Link>
+              </i>
+              <i className="bi bi-phone d-flex align-items-center ms-4">
+                <span>zero three three one , do aand aik lund</span>
+              </i>
+            </div>
+            <div className="social-links d-none d-md-flex align-items-center">
+              <Link href="#" className="twitter"><i className="bi bi-twitter-x"></i></Link>
+              <Link href="#" className="facebook"><i className="bi bi-facebook"></i></Link>
+              <Link href="#" className="instagram"><i className="bi bi-instagram"></i></Link>
+              <Link href="#" className="linkedin"><i className="bi bi-linkedin"></i></Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="branding">
+          <div className="container d-flex justify-content-between">
+            <nav id="navmenu" className="navmenu">
+              <Link href="/" className="logo d-flex align-items-center">
+                <h1 className="sitename">HealthSync</h1>
+              </Link>
+              <ul className="d-flex align-items-center justify-content: flex-end">
+                <li><Link href="#hero" className="active">Home</Link></li>
+                <li><Link href="/DiseaseDetection.js">Disease Detection</Link></li>
+                <li><Link href="#services">Find Doctor</Link></li>
+                <li><Link href="#departments">HealthTips</Link></li>
+                <li><Link href="#doctors">ChatBot</Link></li>
+                <li className="dropdown">
+                  <Link href="#"><span>Services</span> <i className="bi bi-chevron-down toggle-dropdown"></i></Link>
+                  <ul>
+                    <li><Link href="#">Dropdown 1</Link></li>
+                    <li className="dropdown">
+                      <Link href="#"><span>Deep Dropdown</span> <i className="bi bi-chevron-down toggle-dropdown"></i></Link>
+                      <ul>
+                        <li><Link href="#">Deep Dropdown 1</Link></li>
+                        <li><Link href="#">Deep Dropdown 2</Link></li>
+                        <li><Link href="#">Deep Dropdown 3</Link></li>
+                        <li><Link href="#">Deep Dropdown 4</Link></li>
+                        <li><Link href="#">Deep Dropdown 5</Link></li>
+                      </ul>
+                    </li>
+                    <li><Link href="#">Dropdown 2</Link></li>
+                    <li><Link href="#">Dropdown 3</Link></li>
+                    <li><Link href="#">Dropdown 4</Link></li>
+                  </ul>
+                </li>
+                <li><Link href="#contact">Contact</Link></li>
+                <li><Link href="#appointment" className="cta-btn d-none d-sm-block">Make an Appointment</Link></li>
+                <li><Link href="#account" className="cta-btn">Account</Link></li>
+              </ul>
+            </nav>
+            <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
+          </div>
         </div>
       </header>
+    <div className="bg-white">
+      
 
       {/* Static Hero Section with Image */}
       <div className="bg-cover bg-center" style={{ backgroundImage: "url('/slider3.jpg')", backgroundSize: "cover", backgroundPosition: "center -50px", minHeight: '80vh' }}>
@@ -43,57 +101,28 @@ export default function Home() {
       </div>
 
       <main className="container mx-auto p-5">
+        {/* New Container for How It Works and Cards */}
         <section className="my-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">Search for a Doctor</h2>
-          <div className="bg-gray-100 p-5 rounded-lg shadow-md my-5">
-            <div className="flex flex-col md:flex-row justify-between">
-              <div className="md:w-1/3 mb-4 md:mb-0">
-                <label htmlFor="date" className="block text-gray-700">Select Date & Time</label>
-                <input 
-                  type="date" 
-                  id="date" 
-                  className="mt-1 block w-full border-gray-300 rounded-md" 
-                />
-              </div>
-              <div className="md:w-1/3 mb-4 md:mb-0 relative">
-                <label htmlFor="search" className="block text-gray-700">Search Doctors</label>
-                <div className="flex items-center border border-gray-300 rounded-md">
-                  <div className="p-2">
-                    <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
-                  </div>
-                  <input
-                    type="text"
-                    id="search"
-                    placeholder="Enter doctor’s name or specialty"
-                    className="mt-1 block w-full rounded-md p-2 pl-10 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                  />
-                </div>
-              </div>
-            </div>
+          <div className="bg-blue-600 p-5 rounded-lg">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center text-white">How It Works!</h2>
+            <div className="flex flex-col md:flex-row justify-around mt-5">
+  <div className="bg-white p-5 rounded-lg shadow-md text-center text-blue-600 mx-4 mb-4">
+    <h3 className="font-bold">1. Find A Doctor</h3>
+    <p>Discover skilled doctors based on specialization and location.</p>
+  </div>
+  <div className="bg-white p-5 rounded-lg shadow-md text-center text-blue-600 mx-4 mb-4">
+    <h3 className="font-bold">2. Book Appointment</h3>
+    <p>Effortlessly book appointments at your convenience.</p>
+  </div>
+  <div className="bg-white p-5 rounded-lg shadow-md text-center text-blue-600 mx-4 mb-4">
+    <h3 className="font-bold">3. Get Services</h3>
+    <p>Receive personalized healthcare services tailored to your needs.</p>
+  </div>
+</div>
+
           </div>
         </section>
 
-        <section className="my-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">How It Works!</h2>
-          <div className="flex flex-col md:flex-row justify-around mt-5">
-            <div className="bg-gray-100 p-5 rounded-lg shadow-md text-center">
-              <h3 className="font-bold">1. Find A Doctor</h3>
-              <p>Discover skilled doctors based on specialization and location.</p>
-            </div>
-            <div className="bg-gray-100 p-5 rounded-lg shadow-md text-center">
-              <h3 className="font-bold">2. Book Appointment</h3>
-              <p>Effortlessly book appointments at your convenience.</p>
-            </div>
-            <div className="bg-gray-100 p-5 rounded-lg shadow-md text-center">
-              <h3 className="font-bold">3. Get Services</h3>
-              <p>Receive personalized healthcare services tailored to your needs.</p>
-            </div>
-          </div>
-        </section>
-
-        {/* New Features Section */}
         <section className="my-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">Our Features</h2>
           <div className="flex flex-col md:flex-row justify-around mt-5">
@@ -109,5 +138,6 @@ export default function Home() {
         </section>
       </main>
     </div>
+    </>
   )
 }
