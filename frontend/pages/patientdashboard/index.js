@@ -10,6 +10,15 @@ const Dashboard = () => {
     setActiveTab(tab);
   };
 
+  // Sample patient information
+  const patientInfo = {
+    name: 'John Doe',
+    email: 'johndoe@example.com',
+    address: '123 Main St, Springfield, USA',
+    phone: '(123) 456-7890',
+    dob: '1990-01-01',
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.sidebar}>
@@ -48,11 +57,21 @@ const Dashboard = () => {
         </ul>
       </div>
       <div className={styles.content}>
-        {activeTab === 'home' && <h3>Welcome to your Dashboard!</h3>}
+        {activeTab === 'home' && (
+          <div style={{ padding: '20px' }}>
+            <h3>Your Information</h3>
+            <div style={{ backgroundColor: '#f0f8ff', padding: '15px', borderRadius: '8px' }}>
+              <p><strong>Name:</strong> {patientInfo.name}</p>
+              <p><strong>Email:</strong> {patientInfo.email}</p>
+              <p><strong>Address:</strong> {patientInfo.address}</p>
+              <p><strong>Phone:</strong> {patientInfo.phone}</p>
+              <p><strong>Date of Birth:</strong> {patientInfo.dob}</p>
+            </div>
+          </div>
+        )}
         {activeTab === 'readings' && (
           <div>
             <h3>Your Readings</h3>
-            {/* Example table for readings */}
             <table className={styles.table}>
               <thead>
                 <tr>
@@ -80,26 +99,24 @@ const Dashboard = () => {
         {activeTab === 'treatment' && (
           <div>
             <h3>Your Treatment Plans</h3>
-            {/* Example treatment plans content */}
             <p>Plan: Regular Checkup</p>
             <p>Next Appointment: 2024-10-15</p>
-            {/* Add more details as needed */}
           </div>
         )}
         {activeTab === 'appointments' && (
           <div>
             <h3>Your Appointments</h3>
-            {/* Example appointments content */}
             <p>No upcoming appointments.</p>
           </div>
         )}
         {activeTab === 'profile' && (
           <div>
             <h3>Your Profile</h3>
-            {/* Example profile content */}
-            <p>Name: John Doe</p>
-            <p>Email: johndoe@example.com</p>
-            {/* Add more profile details as needed */}
+            <p>Name: {patientInfo.name}</p>
+            <p>Email: {patientInfo.email}</p>
+            <p>Address: {patientInfo.address}</p>
+            <p>Phone: {patientInfo.phone}</p>
+            <p>Date of Birth: {patientInfo.dob}</p>
           </div>
         )}
       </div>
