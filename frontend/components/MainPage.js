@@ -126,13 +126,13 @@ export default function MainPage() {
             <div className="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="200">
               {/* Correctly using the Image component */}
               <Image 
-                src="/about.jpg" // Path to your image
-                className="img-fluid" 
-                alt="About Us" 
-                width={500} // Specify the width
-                height={300} // Specify the height
-                layout="responsive" // Optional: makes the image responsive
-              />
+  src="/about.jpg" // Path to your image
+  className="img-fluid" 
+  alt="About Us" 
+  width={500} // Specify the width
+  height={300} // Specify the height
+  priority // Optional: to load the image early if it's important for the page
+/>
               <Link href="https://www.youtube.com/watch?v=Y7f98aduVJ8" className="glightbox pulsating-play-btn">
                 {/* You can also add an icon or text for the link if needed */}
               </Link>

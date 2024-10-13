@@ -1,6 +1,7 @@
 import '../styles/globals.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'; 
 import '../styles/main.css'; // Import main.css here
 
 import Head from 'next/head';
