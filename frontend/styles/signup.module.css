@@ -24,7 +24,7 @@
 
 .right {
     width: 50%;
-    background: linear-gradient(to right, #bdc4ca, #ddeff5); /* Gradient background */
+    background: linear-gradient(to right, #4d93d1, #bbdbe6); /* Gradient background */
     color: white;
     display: flex;
     flex-direction: column;
