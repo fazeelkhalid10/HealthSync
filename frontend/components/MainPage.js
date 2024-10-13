@@ -225,7 +225,7 @@ export default function MainPage() {
               {/* End Faq item */}
 
               <div className="faq-item">
-                <h3>Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?</h3>
+                <h3>condom or no condom?</h3>
                 <div className="faq-content">
                   <p>
                     Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id
@@ -238,7 +238,7 @@ export default function MainPage() {
               {/* End Faq item */}
 
               <div className="faq-item">
-                <h3>Tempus quam pellentesque nec nam aliquam sem et tortor?</h3>
+                <h3>Kis Company ka PAD pehnti ho?</h3>
                 <div className="faq-content">
                   <p>
                     Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel
@@ -251,7 +251,7 @@ export default function MainPage() {
               {/* End Faq item */}
 
               <div className="faq-item">
-                <h3>Perspiciatis quod quo quos nulla quo illum ullam?</h3>
+                <h3>Body Count?</h3>
                 <div className="faq-content">
                   <p>
                     Enim ea facilis quaerat voluptas quidem et dolorem. Quis et consequatur non sed in suscipit sequi.
