@@ -8,7 +8,7 @@ export default function LoginPage() {
     <div className={styles.container}>
       <div className={styles.left}>
         <img src="/images.jpg" alt="Logo" className={styles.logo} />
-        <h1 className={styles.title}>We are The Lotus Team</h1>
+        <h1 className={styles.title}>Welcome to Healthsync</h1>
         <p className={styles.subtitle}>Please login to your account</p>
         <form className={styles.form}>
           <input type="text" placeholder="Username" className={styles.input} />
