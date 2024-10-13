@@ -41,3 +41,44 @@ def get_employees_by_query(request):
         employee_list.append(employee)
 
     return Response(employee_list)
+
+#repository function
+def execute_stored_procedure(proc_name, params=None, is_select=True):
+    
+    with connection.cursor() as cursor:
+        if params is None:
+            params = {}
+
+        
+        param_str = ', '.join([f"@{k}='{v}'" if isinstance(v, str) else f"@{k}={v}" for k, v in params.items()])
+        sql_call = f"EXEC {proc_name} {param_str}"
+
+        
+        if is_select:
+            cursor.execute(sql_call)
+            rows = cursor.fetchall()
+            col_names = [desc[0] for desc in cursor.description]
+
+            
+            results = [dict(zip(col_names, row)) for row in rows]
+            return results
+        else:
+            cursor.execute(sql_call)
+            return {"status": "Success", "message": f"Procedure '{proc_name}' executed successfully."}
+
+  
+@api_view(['GET'])
+def get_patients(request):
+   
+    proc_name = 'GetTop10Patients'  
+    params = {'patID': '2A0A87CC-ACC8-41DA-8D2A-ABB200298FB9',
+              'dataofbirth':'1944-05-15'
+              
+              
+              }  # Named parameters with @ symbols (without @ in dict keys)
+    
+    
+    result = execute_stored_procedure(proc_name, params, is_select=True)
+    
+    # Return the result as a JSON response
+    return Response(result)
