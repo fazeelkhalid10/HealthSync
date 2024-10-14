@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'myapp',
     'corsheaders'
+    
 ]
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
@@ -56,9 +57,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware', 
-    'django.middleware.common.CommonMiddleware',
+    'django.middleware.common.CommonMiddleware'
+   
 ]
 CORS_ALLOW_ALL_ORIGINS = True  # For development purposes only
+
 
 
 ROOT_URLCONF = 'proback.urls'
@@ -88,7 +91,7 @@ WSGI_APPLICATION = 'proback.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'Caregenix',  # The name of your SQL Server database
+        'NAME': 'hab',  # The name of your SQL Server database
         'USER': '',  # Leave this empty for Windows Authentication
         'PASSWORD': '',  # Leave this empty for Windows Authentication
         'HOST': 'LAPTOP-QLPK4CVV\\SQLEXPRESS',  # Your SQL Server instance name
@@ -100,7 +103,17 @@ DATABASES = {
     }
 }
 
+# settings.py
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 
+
+SESSION_COOKIE_AGE = 1209600  # 2 weeks
+
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+
+
+SESSION_SAVE_EVERY_REQUEST = True
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

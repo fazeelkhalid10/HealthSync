@@ -23,7 +23,7 @@ def dummy_data_view(request):
 @api_view(['GET'])
 def get_employees_by_query(request):
     # Raw SQL query to select data from Employee table
-    query = "select top(10) UserId,FirstName, LastName from rpm_Patients"
+    query = "select top(10) UserId from Users"
 
     # Execute the query and fetch all results
     with connection.cursor() as cursor:
@@ -34,12 +34,11 @@ def get_employees_by_query(request):
     employee_list = []
     for row in rows:
         employee = {
-            'id': row[0],
-            'name': row[1],
-            'position': row[2],
+            'id': row[0]
+            
         }
         employee_list.append(employee)
-
+    
     return Response(employee_list)
 
 #repository function
@@ -69,16 +68,27 @@ def execute_stored_procedure(proc_name, params=None, is_select=True):
   
 @api_view(['GET'])
 def get_patients(request):
-   
-    proc_name = 'GetTop10Patients'  
-    params = {'patID': '2A0A87CC-ACC8-41DA-8D2A-ABB200298FB9',
-              'dataofbirth':'1944-05-15'
-              
-              
-              }  # Named parameters with @ symbols (without @ in dict keys)
+    # Set a session variable without using the database
+    request.session['name'] = 'Ludwik'
     
-    
-    result = execute_stored_procedure(proc_name, params, is_select=True)
+    # Simulate fetching patient data
+    patients = [
+        {'id': 1, 'name': 'John Doe'},
+        {'id': 2, 'name': 'Jane Smith'},
+    ]
     
     # Return the result as a JSON response
-    return Response(result)
+    return Response({'patients': patients, 'session_name': request.session['name']}, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def get_patients1(request):
+    # Check if the session variable 'name' exists
+    session_name = request.session.get('name')  # This will return None if 'name' doesn't exist
+
+    # If the session variable is None, return null
+    if session_name is None:
+        return Response({'session_name': None}, status=status.HTTP_200_OK)
+    
+    # Return the session variable as a JSON response
+    return Response({'session_name': session_name}, status=status.HTTP_200_OK)
