@@ -133,7 +133,7 @@ export default function MainPage() {
   height={300} // Specify the height
   priority // Optional: to load the image early if it's important for the page
 />
-              <Link href="https://www.youtube.com/watch?v=Y7f98aduVJ8" className="glightbox pulsating-play-btn">
+              <Link href="https://youtu.be/SjADMZPAPoc?feature=shared" className="glightbox pulsating-play-btn">
                 {/* You can also add an icon or text for the link if needed */}
               </Link>
             </div>
