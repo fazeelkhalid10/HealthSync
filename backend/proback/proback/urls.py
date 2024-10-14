@@ -22,7 +22,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
    path('dummy_data_view/',views.dummy_data_view,name="dummy_data_view"),
    path('employees_by_query/', views.get_employees_by_query, name='employee-query-list'),
-   path('get_patients/', views.get_patients, name='get_patients')
+   path('get_patients/', views.get_patients, name='get_patients'),
+   path('get_patients1/', views.get_patients1, name='get_patients1')
+
 
     
 ]
