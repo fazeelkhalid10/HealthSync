@@ -38,7 +38,7 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
                 <Link href="mailto:contact@example.com">HealthSync@gmail.com</Link>
               </i>
               <i className="bi bi-phone d-flex align-items-center ms-4">
-                <span>zero three three one , do aand aik lund</span>
+                <span>+3337 897 980</span>
               </i>
             </div>
             <div className="social-links d-none d-md-flex align-items-center">
@@ -57,9 +57,9 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
                 <h1 className="sitename">HealthSync</h1>
               </Link>
               <ul className="d-flex align-items-center justify-content: flex-end">
-                <li><Link href="#hero" className="active">Home</Link></li>
+                <li><Link href="#hero" >Home</Link></li>
                 <li><Link href="/DiseaseDetection.js">Disease Detection</Link></li>
-                <li><Link href="#services">Find Doctor</Link></li>
+                <li><Link href="#services" className="active">Find Doctor</Link></li>
                 <li><Link href="#departments">HealthTips</Link></li>
                 <li><Link href="#doctors">ChatBot</Link></li>
                 <li className="dropdown">
@@ -263,14 +263,14 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
     <div className="single-icon mb-2">
       <i className="icofont icofont-ambulance-cross text-3xl text-blue-600"></i>
     </div>
-    <h3 className="text-lg font-bold">Moky pr chumt mar dete</h3>
+    <h3 className="text-lg font-bold">Jo aik baar ayga baar baar ayga</h3>
     <p>Lorem ipsum sit, consectetur adipiscing elit. Maecenas mi quam vulputate.</p>
   </div>
   <div className="single-features text-center bg-gray-100 p-5 rounded-lg shadow-md w-full md:w-1/3">
     <div className="single-icon mb-2">
       <i className="icofont icofont-ambulance-cross text-3xl text-blue-600"></i>
     </div>
-    <h3 className="text-lg font-bold">Khara kam krdy aaan</h3>
+    <h3 className="text-lg font-bold">Hamsa koi nhi</h3>
     <p>Lorem ipsum sit, consectetur adipiscing elit. Maecenas mi quam vulputate.</p>
   </div>
   {/* Add more feature cards here */}
@@ -279,6 +279,79 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
         </section>
       </main>
     </div>
+    <footer id="footer" className="footer light-background">
+      <div className="container footer-top">
+        <div className="row gy-4">
+          <div className="col-lg-4 col-md-6 footer-about">
+            <Link href="/" className="logo d-flex align-items-center">
+              <span className="sitename">HealthSync</span>
+            </Link>
+            <div className="footer-contact pt-3">
+              <p>MughalPura Lahore</p>
+              <p>New York, NY 535022</p>
+              <p className="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
+              <p><strong>Email:</strong> <span>info@example.com</span></p>
+            </div>
+            <div className="social-links d-flex mt-4">
+              <a href="#"><i className="bi bi-twitter-x"></i></a>
+              <a href="#"><i className="bi bi-facebook"></i></a>
+              <a href="#"><i className="bi bi-instagram"></i></a>
+              <a href="#"><i className="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+
+          <div className="col-lg-2 col-md-3 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><Link href="#">Home</Link></li>
+              <li><Link href="#">About us</Link></li>
+              <li><Link href="#">Services</Link></li>
+              <li><Link href="#">Terms of service</Link></li>
+              <li><Link href="#">Privacy policy</Link></li>
+            </ul>
+          </div>
+
+          <div className="col-lg-2 col-md-3 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><Link href="#">Web Design</Link></li>
+              <li><Link href="#">Web Development</Link></li>
+              <li><Link href="#">Product Management</Link></li>
+              <li><Link href="#">Marketing</Link></li>
+              <li><Link href="#">Graphic Design</Link></li>
+            </ul>
+          </div>
+
+          <div className="col-lg-2 col-md-3 footer-links">
+            <h4>Hic solutasetp</h4>
+            <ul>
+              <li><Link href="#">Molestiae accusamus iure</Link></li>
+              <li><Link href="#">Excepturi dignissimos</Link></li>
+              <li><Link href="#">Suscipit distinctio</Link></li>
+              <li><Link href="#">Dilecta</Link></li>
+              <li><Link href="#">Sit quas consectetur</Link></li>
+            </ul>
+          </div>
+
+          <div className="col-lg-2 col-md-3 footer-links">
+            <h4>Nobis illum</h4>
+            <ul>
+              <li><Link href="#">Ipsam</Link></li>
+              <li><Link href="#">Laudantium dolorum</Link></li>
+              <li><Link href="#">Dinera</Link></li>
+              <li><Link href="#">Trodelas</Link></li>
+              <li><Link href="#">Flexo</Link></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <div className="container copyright text-center mt-4">
+        <p>© <span>Copyright</span> <strong className="px-1 sitename">HealthSync</strong> <span>All Rights Reserved</span></p>
+        
+      </div>
+    </footer>
     </>
   )
 }

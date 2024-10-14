@@ -13,7 +13,7 @@ export default function MainPage() {
                 <Link href="mailto:contact@example.com">HealthSync@gmail.com</Link>
               </i>
               <i className="bi bi-phone d-flex align-items-center ms-4">
-                <span>zero three three one , do aand aik lund</span>
+                <span>+3337 897 980</span>
               </i>
             </div>
             <div className="social-links d-none d-md-flex align-items-center">
@@ -186,7 +186,7 @@ export default function MainPage() {
           <div className="col-lg-10" data-aos="fade-up" data-aos-delay="100">
             <div className="faq-container">
               <div className="faq-item faq-active">
-                <h3>Kadi vich pavayi?</h3>
+                <h3>Why HealthSync?</h3>
                 <div className="faq-content">
                   <p>
                     Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida.
@@ -198,7 +198,7 @@ export default function MainPage() {
               {/* End Faq item */}
 
               <div className="faq-item">
-                <h3>is it Pink?</h3>
+                <h3>Any Hidden Charges?</h3>
                 <div className="faq-content">
                   <p>
                     Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id
@@ -211,7 +211,7 @@ export default function MainPage() {
               {/* End Faq item */}
 
               <div className="faq-item">
-                <h3>Bra kis color ka ha ?</h3>
+                <h3> How think works ?</h3>
                 <div className="faq-content">
                   <p>
                     Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum
@@ -225,7 +225,7 @@ export default function MainPage() {
               {/* End Faq item */}
 
               <div className="faq-item">
-                <h3>condom or no condom?</h3>
+                <h3> Are Doctor Trusted?</h3>
                 <div className="faq-content">
                   <p>
                     Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id
@@ -238,7 +238,7 @@ export default function MainPage() {
               {/* End Faq item */}
 
               <div className="faq-item">
-                <h3>Kis Company ka PAD pehnti ho?</h3>
+                <h3>Affilated Hospitals?</h3>
                 <div className="faq-content">
                   <p>
                     Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel
@@ -251,7 +251,7 @@ export default function MainPage() {
               {/* End Faq item */}
 
               <div className="faq-item">
-                <h3>Body Count?</h3>
+                <h3>Number of Users?</h3>
                 <div className="faq-content">
                   <p>
                     Enim ea facilis quaerat voluptas quidem et dolorem. Quis et consequatur non sed in suscipit sequi.
@@ -278,7 +278,7 @@ export default function MainPage() {
               <span className="sitename">HealthSync</span>
             </Link>
             <div className="footer-contact pt-3">
-              <p>A108 Adam Street</p>
+              <p>MughalPura Lahore</p>
               <p>New York, NY 535022</p>
               <p className="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
               <p><strong>Email:</strong> <span>info@example.com</span></p>
@@ -339,14 +339,8 @@ export default function MainPage() {
       </div>
 
       <div className="container copyright text-center mt-4">
-        <p>© <span>Copyright</span> <strong className="px-1 sitename">Medilab</strong> <span>All Rights Reserved</span></p>
-        <div className="credits">
-          {/* All the links in the footer should remain intact. */}
-          {/* You can delete the links only if you've purchased the pro version. */}
-          {/* Licensing information: https://bootstrapmade.com/license/ */}
-          {/* Purchase the pro version with working PHP/AJAX contact form: [buy-url] */}
-          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-        </div>
+        <p>© <span>Copyright</span> <strong className="px-1 sitename">HealthSync</strong> <span>All Rights Reserved</span></p>
+        
       </div>
     </footer>
      

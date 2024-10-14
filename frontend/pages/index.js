@@ -11,9 +11,9 @@ export default function HomePage() {
         <title>HealthSync</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <MainPage /> */}
+      <MainPage />
       {/* <DiseaseDetection/> */}
-      <MakeAppointment/>
+      {/* <MakeAppointment/> */}
      {/* idher sirf pages likh ker test karli routing baad me karlenge */}
      
     </div>

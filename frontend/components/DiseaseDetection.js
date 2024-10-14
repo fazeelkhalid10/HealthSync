@@ -36,7 +36,7 @@ export default function DiseaseDetection() {
                 <Link href="mailto:contact@example.com">HealthSync@gmail.com</Link>
               </i>
               <i className="bi bi-phone d-flex align-items-center ms-4">
-                <span>zero three three one , do aand aik lund</span>
+                <span>+3337 897 980</span>
               </i>
             </div>
             <div className="social-links d-none d-md-flex align-items-center">
