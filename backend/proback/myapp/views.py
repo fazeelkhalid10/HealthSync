@@ -69,26 +69,28 @@ def execute_stored_procedure(proc_name, params=None, is_select=True):
 @api_view(['GET'])
 def get_patients(request):
     # Set a session variable without using the database
-    request.session['name'] = 'Ludwik'
+    request.session['name'] = 'Ludwik12'
     
     # Simulate fetching patient data
     patients = [
         {'id': 1, 'name': 'John Doe'},
         {'id': 2, 'name': 'Jane Smith'},
     ]
-    
+    print("Current session:", request.session.items())
     # Return the result as a JSON response
     return Response({'patients': patients, 'session_name': request.session['name']}, status=status.HTTP_200_OK)
-
+    
 
 @api_view(['GET'])
 def get_patients1(request):
     # Check if the session variable 'name' exists
     session_name = request.session.get('name')  # This will return None if 'name' doesn't exist
-
+    print(request.session.get('name'))
     # If the session variable is None, return null
-    if session_name is None:
-        return Response({'session_name': None}, status=status.HTTP_200_OK)
+    # if session_name is None:
+    #     return Response({'session_name': None}, status=status.HTTP_200_OK)
     
-    # Return the session variable as a JSON response
     return Response({'session_name': session_name}, status=status.HTTP_200_OK)
+   
+
+    # Return the session variable as a JSON response

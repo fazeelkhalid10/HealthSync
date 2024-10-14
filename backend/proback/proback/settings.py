@@ -61,8 +61,8 @@ MIDDLEWARE = [
    
 ]
 CORS_ALLOW_ALL_ORIGINS = True  # For development purposes only
-
-
+CORS_ALLOW_CREDENTIALS = True
+# Allow your Next.js app origin
 
 ROOT_URLCONF = 'proback.urls'
 
@@ -107,11 +107,12 @@ DATABASES = {
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 
 
-SESSION_COOKIE_AGE = 1209600  # 2 weeks
+#SESSION_COOKIE_AGE = 1209600  # 2 weeks
 
 
-SESSION_EXPIRE_AT_BROWSER_CLOSE = False
-
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_SAMESITE = 'None'  # Adjust as necessary
+SESSION_COOKIE_SECURE = True 
 
 SESSION_SAVE_EVERY_REQUEST = True
 
