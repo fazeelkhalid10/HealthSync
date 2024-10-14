@@ -23,7 +23,7 @@ def dummy_data_view(request):
 @api_view(['GET'])
 def get_employees_by_query(request):
     # Raw SQL query to select data from Employee table
-    query = "select top(10) UserId from Users"
+    query = "select top(10) UserId from rpm_patients"
 
     # Execute the query and fetch all results
     with connection.cursor() as cursor:
@@ -69,7 +69,7 @@ def execute_stored_procedure(proc_name, params=None, is_select=True):
 @api_view(['GET'])
 def get_patients(request):
     # Set a session variable without using the database
-    request.session['name'] = 'Ludwik12'
+    request.session['name'] = 'Ludwik121'
     
     # Simulate fetching patient data
     patients = [
