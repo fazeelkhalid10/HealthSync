@@ -1,36 +1,36 @@
 import { useState } from 'react';
-
 import Link from 'next/link';
 import Image from 'next/image';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'; 
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import styles from '/styles/appointment.module.css';
 
- function MakeAppointment() {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [formData, setFormData] = useState({
-      date: '',
-      doctor: '',
-      description: '',
-      name: '',
-      phone: '',
+function MakeAppointment() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [formData, setFormData] = useState({
+    date: '',
+    doctor: '',
+    description: '',
+    name: '',
+    phone: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
     });
-  
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    };
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      // Handle form submission logic here
-      console.log(formData);
-    };
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    console.log(formData);
+  };
 
   return (
     <>
-    <header id="header" className="header sticky-top">
+       <header id="header" className="header sticky-top">
         <div className="topbar d-flex align-items-center">
           <div className="container d-flex justify-content-between">
             <div className="contact-info d-flex align-items-center">
@@ -58,8 +58,8 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
               </Link>
               <ul className="d-flex align-items-center justify-content: flex-end">
                 <li><Link href="#hero" >Home</Link></li>
-                <li><Link href="/DiseaseDetection.js">Disease Detection</Link></li>
-                <li><Link href="#services" className="active">Find Doctor</Link></li>
+                <li><Link href="#hero" className="active">Disease Detection</Link></li>
+                <li><Link href="#services">Find Doctor</Link></li>
                 <li><Link href="#departments">HealthTips</Link></li>
                 <li><Link href="#doctors">ChatBot</Link></li>
                 <li className="dropdown">
@@ -82,7 +82,7 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
                   </ul>
                 </li>
                 <li><Link href="#contact">Contact</Link></li>
-                <li><Link href="#appointment" className="cta-btn d-none d-sm-block">Make an Appointment</Link></li>
+                <li><Link href="appointment" className="cta-btn d-none d-sm-block">Make an Appointment</Link></li>
                 <li><Link href="#account" className="cta-btn">Account</Link></li>
               </ul>
             </nav>
@@ -90,144 +90,129 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
           </div>
         </div>
       </header>
-    <div className="bg-white">
-      
 
-      {/* Static Hero Section with Image */}
-      <div className="bg-cover bg-center" style={{ backgroundImage: "url('/slider3.jpg')", backgroundSize: "cover", backgroundPosition: "center -50px", minHeight: '80vh' }}>
-        <div className="container mx-auto flex items-center h-full py-16"> {/* Reduced padding for slight upward movement */}
-          <div className="w-full md:w-1/2 text-white">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Book Your Doctor<span className="text-blue-600"> Appointment</span> Online 
-            </h1>
-            <p className="text-lg mb-6 text-blue-600">
-              A healthier tomorrow starts today
-            </p>
-            {/* Buttons Section */}
-            <div className="button-group flex">
-  {/* Get Appointment Button */}
-  <a 
-    href="#" 
-    className="relative inline-block bg-blue-600 text-white px-4 py-2 rounded overflow-hidden transition duration-300 ease-in-out hover:bg-white hover:text-blue-600 hover:border hover:border-blue-600"
-  >
-    <span className="absolute inset-0 bg-blue-600 transform translate-x-full transition duration-300 ease-in-out"></span>
-    <span className="relative z-10">Get Appointment</span>
-  </a>
-
-  {/* About Us Button */}
-  <a 
-    href="#" 
-    className="relative inline-block bg-blue-600 text-white px-4 py-2 rounded overflow-hidden transition duration-300 ease-in-out ml-4 hover:bg-white hover:text-blue-600 hover:border hover:border-blue-600"
-  >
-    <span className="absolute inset-0 bg-blue-600 transform translate-x-full transition duration-300 ease-in-out"></span>
-    <span className="relative z-10">About Us</span>
-  </a>
-</div>
-
-          </div>
-        </div>
-      </div>
-
-      <main className="container mx-auto p-5">
-        {/* New Container for How It Works and Cards */}
-        <section className="my-10">
-      <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">Search for a Doctor</h2>
-      <div className="bg-gray-100 p-5 rounded-lg shadow-md my-5">
-        <form onSubmit={handleSubmit}>
-          <div className="flex flex-col md:flex-row justify-between gap-4">
-            {/* Date & Time */}
-            <div className="md:w-1/2 mb-4 md:mb-0">
-              <label htmlFor="date" className="block text-gray-700">Select Date</label>
-              <input 
-                type="date" 
-                id="date" 
-                name="date"
-                className="mt-1 block w-full border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500"
-                value={formData.date}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            {/* Doctor Search */}
-            <div className="md:w-1/2 mb-4 md:mb-0">
-              <label htmlFor="search" className="block text-gray-700">Search Doctors</label>
-              <div className="flex items-center border border-gray-300 rounded-md">
-                <div className="p-2">
-                  <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  type="text"
-                  id="doctor"
-                  name="doctor"
-                  placeholder="Enter doctor’s name or specialty"
-                  className="block w-full rounded-md p-2 pl-10 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  value={formData.doctor}
-                  onChange={handleChange}
-                  required
-                />
+      <div className="bg-white">
+        {/* Hero Section */}
+        <div className={styles['hero-bg']} style={{ backgroundImage: "url('/slider3.jpg')" }}>
+          <div className={`container mx-auto ${styles['hero-container']}`}>
+            <div className="w-full md:w-1/2">
+            <h1 className={`${styles.heroHeading} ${styles.heroHeadingMd}`}>
+  <span className={styles.heroText}>Book Your Doctor</span>
+  <span className={styles.heroTextBlue}> Appointment</span>
+  <span className={styles.heroText}> Online</span>
+</h1>
+              <p className="text-lg mb-6 text-blue-600">
+                A healthier tomorrow starts today
+              </p>
+              <div className="button-group flex">
+                <a href="#" className={`${styles['hero-button']}`}>
+                  Get Appointment
+                </a>
+                <a href="#" className={`${styles['hero-button']} ${styles['about-button']}`}>
+                  About Us
+                </a>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Name and Phone */}
-          <div className="flex flex-col md:flex-row justify-between gap-4 mt-4">
-            <div className="md:w-1/2 mb-4 md:mb-0">
-              <label htmlFor="name" className="block text-gray-700">Name</label>
-              <input 
-                type="text" 
-                id="name" 
-                name="name"
-                className="mt-1 block w-full border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
+        <main className="container mx-auto p-5">
+          {/* Form Section */}
+          <section className="my-10">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">Search for a Doctor</h2>
+            <div className="flex justify-center">
+              <form className="w-full max-w-3xl">
+                <div className="flex items-center border-b border-blue-500 py-2">
+                  <input 
+                    className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" 
+                    type="text" 
+                    placeholder="Doctor name or specialty"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)} 
+                  />
+                  <button 
+                    className="flex-shrink-0 bg-blue-500 hover:bg-blue-700 text-sm text-white py-1 px-2 rounded" 
+                    type="button"
+                  >
+                    <MagnifyingGlassIcon className="h-5 w-5" />
+                  </button>
+                </div>
+              </form>
             </div>
-            <div className="md:w-1/2 mb-4 md:mb-0">
-              <label htmlFor="phone" className="block text-gray-700">Phone Number</label>
-              <input 
-                type="tel" 
-                id="phone" 
-                name="phone"
-                className="mt-1 block w-full border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500"
-                value={formData.phone}
-                onChange={handleChange}
-                required
-              />
+          </section>
+
+          {/* Appointment Form */}
+          <section id="appointment" className="my-10">
+            <div className="container mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">Make an Appointment</h2>
+              <div className="flex justify-center">
+                <form className={styles['appointment-container']} onSubmit={handleSubmit}>
+                  <label htmlFor="date">Date:</label>
+                  <input
+                    type="date"
+                    id="date"
+                    name="date"
+                    className={styles['appointment-input']}
+                    value={formData.date}
+                    onChange={handleChange}
+                    required
+                  />
+
+                  <label htmlFor="doctor">Doctor:</label>
+                  <input
+                    type="text"
+                    id="doctor"
+                    name="doctor"
+                    placeholder="Doctor's Name"
+                    className={styles['appointment-input']}
+                    value={formData.doctor}
+                    onChange={handleChange}
+                    required
+                  />
+
+                  <label htmlFor="description">Description:</label>
+                  <textarea
+                    id="description"
+                    name="description"
+                    placeholder="Describe your symptoms"
+                    className={styles['appointment-input']}
+                    value={formData.description}
+                    onChange={handleChange}
+                    required
+                  />
+
+                  <label htmlFor="name">Name:</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Your Name"
+                    className={styles['appointment-input']}
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                  />
+
+                  <label htmlFor="phone">Phone:</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="Phone Number"
+                    className={styles['appointment-input']}
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                  />
+
+                  <button type="submit" className={styles['appointment-submit']}>
+                    Submit
+                  </button>
+                </form>
+              </div>
             </div>
-          </div>
-
-          {/* Description */}
-          <div className="mt-4">
-            <label htmlFor="description" className="block text-gray-700">Description</label>
-            <textarea
-              id="description"
-              name="description"
-              rows="4"
-              className="mt-1 block w-full border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500"
-              value={formData.description}
-              onChange={handleChange}
-              placeholder="Enter a description of your symptoms or reason for appointment"
-              required
-            />
-          </div>
-
-          {/* Submit Button */}
-          <div className="mt-6">
-            <button 
-              type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded transition duration-200"
-            >
-              Submit
-            </button>
-          </div>
-        </form>
-      </div>
-    </section>
-        
-
-        <section className="my-10">
+          </section>
+          <section className="my-10">
           <div className="bg-blue-600 p-5 rounded-lg">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center text-white">How It Works!</h2>
             <div className="flex flex-col md:flex-row justify-around mt-5">
@@ -247,7 +232,6 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
           </div>
         </section>
-
         <section className="my-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">Our Features</h2>
           <div className="flex flex-col md:flex-row justify-around gap-5 mt-5">
@@ -277,9 +261,9 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 </div>
 
         </section>
-      </main>
-    </div>
-    <footer id="footer" className="footer light-background">
+        </main>
+      </div>
+      <footer id="footer" className="footer light-background">
       <div className="container footer-top">
         <div className="row gy-4">
           <div className="col-lg-4 col-md-6 footer-about">
@@ -352,8 +336,9 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
         
       </div>
     </footer>
+      
     </>
-  )
+  );
 }
 
-export default MakeAppointment
+export default MakeAppointment;
