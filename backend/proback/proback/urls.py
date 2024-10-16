@@ -21,7 +21,9 @@ from myapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
    path('getUser/',views.getUser,name="getUser"),
-   path('getUsername/',views.getUsername,name="getUsername")
+   path('getUsername/',views.getUsername,name="getUsername"),
+   path('insertpatient/',views.insertpatient,name="insertpatient")
+
 
 
 

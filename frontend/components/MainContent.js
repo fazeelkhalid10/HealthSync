@@ -28,7 +28,6 @@ if (status === "loading") {
 if(true){
   return (
     <>
-     
       
       
       <section id="hero" className="hero section light-background">
@@ -234,6 +233,7 @@ if(true){
 
 
 
+   
     </>
   );
 }}
