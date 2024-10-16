@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'proback.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'CareGenix',  # The name of your SQL Server database
+        'NAME': 'healthsync',  # The name of your SQL Server database
         'USER': '',  # Leave this empty for Windows Authentication
         'PASSWORD': '',  # Leave this empty for Windows Authentication
         'HOST': 'LAPTOP-QLPK4CVV\\SQLEXPRESS',  # Your SQL Server instance name

@@ -116,3 +116,33 @@
     background-color: #007bff;
     color: white;
 }
+
+.errorBar {
+    background-color: #f8d7da; /* Light red background */
+    color: #721c24; /* Dark red text */
+    border: 1px solid #f5c6cb; /* Border color */
+    padding: 10px; /* Padding */
+    margin: 10px 0; /* Margin above and below */
+    border-radius: 5px; /* Rounded corners */
+    display: flex; /* Use flexbox to align items */
+    justify-content: space-between; /* Space between message and button */
+    align-items: center; /* Center align vertically */
+  }
+  
+  .errorMessage {
+    flex-grow: 1; /* Allow message to take up remaining space */
+  }
+  
+  .closeButton {
+    background: none; /* No background */
+    border: none; /* No border */
+    color: #721c24; /* Match text color */
+    font-size: 18px; /* Size of the close button */
+    cursor: pointer; /* Pointer cursor on hover */
+    margin-left: 10px; /* Margin between text and close button */
+  }
+  
+  .closeButton:hover {
+    color: #f5c6cb; /* Change color on hover */
+  }
+  

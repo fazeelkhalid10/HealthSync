@@ -1,8 +1,31 @@
 // components/Header.js
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSession,signOut } from 'next-auth/react';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 export default function MainPage() {
+  const { data: session, status } = useSession();
+const [name,setName]=useState(null)
+const router = useRouter();
+useEffect(() => {
+  if (session && session.user) {
+    setName(session.user.username); // Set name when session exists
+  } else {
+    setName(null); // Reset name if session doesn't exist
+  }
+}, [session]); // Depend on session
+useEffect(() => {
+  if (!session) {
+    router.push('/login'); // Redirect to login if not authenticated
+  }
+}, [session, router]);
+// Display loading message while checking session
+if (status === "loading") {
+  return <p>Loading...</p>;
+}
+if(session){
   return (
     <>
       <header id="header" className="header sticky-top">
@@ -21,6 +44,7 @@ export default function MainPage() {
               <Link href="#" className="facebook"><i className="bi bi-facebook"></i></Link>
               <Link href="#" className="instagram"><i className="bi bi-instagram"></i></Link>
               <Link href="#" className="linkedin"><i className="bi bi-linkedin"></i></Link>
+              <h1>Welcome, {name}!</h1> {/* Display username */}
             </div>
           </div>
         </div>
@@ -59,6 +83,7 @@ export default function MainPage() {
                 <li><Link href="#contact">Contact</Link></li>
                 <li><Link href="#appointment" className="cta-btn d-none d-sm-block">Make an Appointment</Link></li>
                 <li><Link href="#account" className="cta-btn">Account</Link></li>
+                <li><button className='btn btn-primary' onClick={() => signOut({ callbackUrl: '/login' })}>signOut</button></li>
               </ul>
             </nav>
             <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -346,4 +371,4 @@ export default function MainPage() {
      
     </>
   );
-}
+}}
