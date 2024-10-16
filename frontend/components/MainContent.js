@@ -9,23 +9,23 @@ export default function MainPage() {
   const { data: session, status } = useSession();
 const [name,setName]=useState(null)
 const router = useRouter();
-useEffect(() => {
-  if (session && session.user) {
-    setName(session.user.username); // Set name when session exists
-  } else {
-    setName(null); // Reset name if session doesn't exist
-  }
-}, [session]); // Depend on session
-useEffect(() => {
-  if (!session) {
-    router.push('/login'); // Redirect to login if not authenticated
-  }
-}, [session, router]);
+// useEffect(() => {
+//   if (session && session.user) {
+//     setName(session.user.username); // Set name when session exists
+//   } else {
+//     setName(null); // Reset name if session doesn't exist
+//   }
+// }, [session]); // Depend on session
+// useEffect(() => {
+//   if (!session) {
+//     router.push('/login'); // Redirect to login if not authenticated
+//   }
+// }, [session, router]);
 // Display loading message while checking session
 if (status === "loading") {
   return <p>Loading...</p>;
 }
-if(session){
+if(true){
   return (
     <>
       <header id="header" className="header sticky-top">
