@@ -43,13 +43,14 @@ export default function AppointmentBody() {
                 A healthier tomorrow starts today
               </p>
               <div className="button-group flex">
-                <Link href="/MakeAppointment">
-                  <a className={`${styles['hero-button']}`}>Get Appointment</a>
-                </Link>
-                <Link href="/about">
-                  <a className={`${styles['hero-button']} ${styles['about-button']}`}>About Us</a>
-                </Link>
-              </div>
+  <Link href="/MakeAppointment" className={`${styles['hero-button']}`}>
+    Get Appointment
+  </Link>
+  <Link href="/about" className={`${styles['hero-button']} ${styles['about-button']}`}>
+    About Us
+  </Link>
+</div>
+
             </div>
           </div>
         </div>
