@@ -24,28 +24,27 @@ export default function Header() {
           </div>
         </div>
       </div>
+
       <div className="branding">
         <div className="container d-flex justify-content-between">
-          <Link href="/" className="logo d-flex align-items-center">
-            <h1 className="sitename">HealthSync</h1>
-          </Link>
           <nav id="navmenu" className="navmenu">
+            <Link href="/" className="logo d-flex align-items-center">
+              <h1 className="sitename">HealthSync</h1>
+            </Link>
             <ul className="d-flex align-items-center justify-content: flex-end">
-              <li className={router.pathname === "/" ? "active" : ""}>
-                <Link href="/">Home</Link>
-              </li>
-              <li className={router.pathname === "/diseasedetection" ? "active" : ""}>
-                <Link href="/diseasedetection">Disease Detection</Link>
+              <li>
+                <Link href="/MainPage" className={router.pathname === "/MainPage" ? "active" : ""}>
+                  Home
+                </Link>
               </li>
               <li>
-                <Link href="#services">Find Doctor</Link>
+                <Link href="/DiseaseDetection" className={router.pathname === "/DiseaseDetection" ? "active" : ""}>
+                  Disease Detection
+                </Link>
               </li>
-              <li>
-                <Link href="#departments">HealthTips</Link>
-              </li>
-              <li>
-                <Link href="#doctors">ChatBot</Link>
-              </li>
+              <li><Link href="#services">Find Doctor</Link></li>
+              <li><Link href="#departments">HealthTips</Link></li>
+              <li><Link href="#doctors">ChatBot</Link></li>
               <li className="dropdown">
                 <Link href="#"><span>Services</span> <i className="bi bi-chevron-down toggle-dropdown"></i></Link>
                 <ul>
@@ -65,15 +64,9 @@ export default function Header() {
                   <li><Link href="#">Dropdown 4</Link></li>
                 </ul>
               </li>
-              <li>
-                <Link href="#contact">Contact</Link>
-              </li>
-              <li>
-                <Link href="#appointment" className="cta-btn d-none d-sm-block">Make an Appointment</Link>
-              </li>
-              <li>
-                <Link href="#account" className="cta-btn">Account</Link>
-              </li>
+              <li><Link href="#contact">Contact</Link></li>
+              <li><Link href="appointment" className="cta-btn d-none d-sm-block">Make an Appointment</Link></li>
+              <li><Link href="#account" className="cta-btn">Account</Link></li>
             </ul>
           </nav>
           <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>

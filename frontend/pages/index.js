@@ -1,6 +1,7 @@
 import Head from 'next/head';
-import DiseaseDetection from '../components/DiseaseDetection';
+
 import MainPage from './MainPage';
+import DiseaseDetection from './DiseaseDetection';
 
 
 export default function HomePage() {
