@@ -2,6 +2,7 @@ import Head from 'next/head';
 
 import MainPage from './MainPage';
 import DiseaseDetection from './DiseaseDetection';
+import MakeAppointment from './MakeAppointment';
 
 
 export default function HomePage() {
