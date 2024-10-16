@@ -1,13 +1,12 @@
-
 import { useRouter } from 'next/router';
-// components/Header.js
 import Link from 'next/link';
 import Image from 'next/image';
-import { useSession,signOut } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 import { useState, useEffect } from 'react';
 
 export default function Header() {
   const router = useRouter();
+  const { data: session } = useSession();
 
   return (
     <header id="header" className="header sticky-top">
@@ -26,7 +25,6 @@ export default function Header() {
             <Link href="#" className="facebook"><i className="bi bi-facebook"></i></Link>
             <Link href="#" className="instagram"><i className="bi bi-instagram"></i></Link>
             <Link href="#" className="linkedin"><i className="bi bi-linkedin"></i></Link>
-
           </div>
         </div>
       </div>
@@ -37,7 +35,7 @@ export default function Header() {
             <Link href="/" className="logo d-flex align-items-center">
               <h1 className="sitename">HealthSync</h1>
             </Link>
-            <ul className="d-flex align-items-center justify-content: flex-end">
+            <ul className="d-flex align-items-center justify-content-end">
               <li>
                 <Link href="/MainPage" className={router.pathname === "/MainPage" ? "active" : ""}>
                   Home
@@ -72,9 +70,16 @@ export default function Header() {
               </li>
               <li><Link href="#contact">Contact</Link></li>
               <li><Link href="MakeAppointment" className="cta-btn d-none d-sm-block">Make an Appointment</Link></li>
-              <li><Link href="#account" className="cta-btn">Account</Link></li>
-              <li><button className='btn btn-primary' onClick={() => signOut({ callbackUrl: '/login' })}>signOut</button></li>
-
+              {session ? (
+                <>
+                  <li><Link href="#account" className="cta-btn">Account</Link></li>
+                  <li>
+                    <button className='btn btn-primary' onClick={() => signOut({ callbackUrl: '/login' })}>signOut</button>
+                  </li>
+                </>
+              ) : (
+                <li><Link href="/login" className="cta-btn">Login</Link></li>
+              )}
             </ul>
           </nav>
           <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
