@@ -11,9 +11,15 @@ const DummyDataPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/get_patients1/', {
-            method: 'GET',
-            credentials: 'include',  // Important: This must be set to include cookies
+        const response = await fetch('http://127.0.0.1:8000/getUser/', {
+          method: 'POST', // Change to POST since your API expects POST requests
+          headers: {
+            'Content-Type': 'application/json', // Specify the content type
+          },
+          body: JSON.stringify({
+            username: "johndoe",
+            password: "mySecurePassword!",
+          }),
         });
         if (!response.ok) {
             console.log(response)

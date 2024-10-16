@@ -2,44 +2,34 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from django.db import connection
-@api_view(['GET'])  # Specify the HTTP method for this view
-def dummy_data_view(request):
-    # Dummy data to return
-    dummy_data = {
-        'message': 'Hello, this is dummy data!',
-        'status': 'success',
-        'data': {
-            'item1': 'value1',
-            'item2': 'value2',
-            'item3': 'value3',
-        }
-    }
-    return Response(dummy_data)
+
+@api_view(['GET', 'POST'])  # Allow both GET and POST methods
+def getUser(request):
+    if request.method == 'POST':
+        username = request.data.get("username")
+        password = request.data.get("password")
+    elif request.method == 'GET':
+        username = request.GET.get("username")
+        password = request.GET.get("password")
 
 
+    print(username)
+    print(password)
 
+        # Call the stored procedure or query your database
+    proc_name = "GetUser"
+    params = {
+            "Username": username,
+            "Password": password,
+            "show":1    }
 
+    results = execute_stored_procedure(proc_name, params, True)
+    print(results)
+    if results:
+            return Response(results, status=200)  # Return user data if found
+    else:
+            return Response({"error": "Invalid username or password"}, status=401)  # Unauthorized
 
-@api_view(['GET'])
-def get_employees_by_query(request):
-    # Raw SQL query to select data from Employee table
-    query = "select top(10) UserId from rpm_patients"
-
-    # Execute the query and fetch all results
-    with connection.cursor() as cursor:
-        cursor.execute(query)
-        rows = cursor.fetchall()
-
-    # Construct response data from the result
-    employee_list = []
-    for row in rows:
-        employee = {
-            'id': row[0]
-            
-        }
-        employee_list.append(employee)
-    
-    return Response(employee_list)
 
 #repository function
 def execute_stored_procedure(proc_name, params=None, is_select=True):
@@ -65,32 +55,34 @@ def execute_stored_procedure(proc_name, params=None, is_select=True):
             cursor.execute(sql_call)
             return {"status": "Success", "message": f"Procedure '{proc_name}' executed successfully."}
 
+
   
-@api_view(['GET'])
-def get_patients(request):
-    # Set a session variable without using the database
-    request.session['name'] = 'Ludwik121'
-    
-    # Simulate fetching patient data
-    patients = [
-        {'id': 1, 'name': 'John Doe'},
-        {'id': 2, 'name': 'Jane Smith'},
-    ]
-    print("Current session:", request.session.items())
-    # Return the result as a JSON response
-    return Response({'patients': patients, 'session_name': request.session['name']}, status=status.HTTP_200_OK)
-    
+@api_view(['GET', 'POST'])  # Allow both GET and POST methods
+def getUsername(request):
+    if request.method == 'POST':
+        username = request.data.get("username")
+        
+    elif request.method == 'GET':
+        username = request.GET.get("username")
+     
 
-@api_view(['GET'])
-def get_patients1(request):
-    # Check if the session variable 'name' exists
-    session_name = request.session.get('name')  # This will return None if 'name' doesn't exist
-    print(request.session.get('name'))
-    # If the session variable is None, return null
-    # if session_name is None:
-    #     return Response({'session_name': None}, status=status.HTTP_200_OK)
-    
-    return Response({'session_name': session_name}, status=status.HTTP_200_OK)
-   
 
-    # Return the session variable as a JSON response
+    print(username)
+  
+
+        # Call the stored procedure or query your database
+    proc_name = "GetUser"
+    params = {
+         
+            "Username": username,
+            "show":2
+           
+    }
+
+    results = execute_stored_procedure(proc_name, params, True)
+    print(results)
+    if results:
+            return Response({"result":True}, status=200)  # Return user data if found
+    else:
+            return Response({"result":False}, status=200)  # Return user data if found
+  # Unauthorized
