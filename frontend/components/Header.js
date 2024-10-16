@@ -65,7 +65,7 @@ export default function Header() {
                 </ul>
               </li>
               <li><Link href="#contact">Contact</Link></li>
-              <li><Link href="appointment" className="cta-btn d-none d-sm-block">Make an Appointment</Link></li>
+              <li><Link href="MakeAppointment" className="cta-btn d-none d-sm-block">Make an Appointment</Link></li>
               <li><Link href="#account" className="cta-btn">Account</Link></li>
             </ul>
           </nav>
