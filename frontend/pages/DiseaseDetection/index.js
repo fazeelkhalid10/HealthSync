@@ -1,8 +1,8 @@
-// pages/DiseaseDetection.js
+// pages/DiseaseDetection/index.js
 import Head from 'next/head';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import DiseaseBody from '../components/DiseaseBody';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import DiseaseBody from '../../components/DiseaseBody';
 
 export default function DiseaseDetection() {
   return (
