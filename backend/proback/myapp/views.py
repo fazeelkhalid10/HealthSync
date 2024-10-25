@@ -82,6 +82,80 @@ def insertpatient(request):
 
 
 
+@api_view(['GET', 'POST'])  # Allow both GET and POST methods
+def signupDoctor(request):
+
+
+
+    if request.method == 'POST':
+        username = request.data.get("username")
+        email = request.data.get("email")
+        phone = request.data.get("phone")
+        password = request.data.get("password")
+        city = request.data.get("city")
+        specialization = request.data.get("specialization")
+        name = request.data.get("name")
+        dob = request.data.get("date_of_birth")
+
+        
+    elif request.method == 'GET':
+        username = request.Get.get("username")
+        email = request.Get.get("email")
+        phone = request.Get.get("phone")
+        password = request.Get.get("password")
+        city = request.Get.get("city")
+        specialization = request.Get.get("specialization")
+        name = request.Get.get("name")
+        dob = request.Get.get("date_of_birth")
+
+
+        
+     
+
+
+    print(f"Username: {username}")
+    print(f"Email: {email}")
+    print(f"Phone: {phone}")
+    print(f"Password: {password}")
+    print(f"City: {city}")
+    print(f"Specialization: {specialization}")
+    print(f"Name: {name}")
+    print(f"Date of Birth: {dob}")
+    proc_name="InsertUser"
+    param = {
+    "Username": username,
+    "Email": email,
+    "PhoneNo": phone,
+    "Password": password,
+    "Address": city,
+    "IsActive":1,
+    "Name": name,
+    "experience": 2,
+    "show":2,
+    "Specialization":specialization
+     }
+
+    execute_stored_procedure(proc_name,param,False)
+        # Call the stored procedure or query your database
+    # proc_name = "InsertUser"
+    # params = {
+         
+    #         "Username": username,
+    #         "show":2
+           
+    # }
+
+    # results = execute_stored_procedure(proc_name, params, True)
+    #print(True)
+    if True:
+            return Response({"result":True}, status=200)  # Return user data if found
+    else:
+            return Response({"result":False}, status=200)  # Return user data if found
+  # Unauthorized
+
+
+
+
 
 
 @api_view(['GET', 'POST'])  # Allow both GET and POST methods
