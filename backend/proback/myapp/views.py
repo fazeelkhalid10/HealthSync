@@ -186,6 +186,33 @@ def getUser(request):
             return Response({"error": "Invalid username or password"}, status=401)  # Unauthorized
 
 
+
+@api_view(['GET', 'POST'])  # Allow both GET and POST methods
+def getUser1(request):
+    if request.method == 'POST':
+        username = request.data.get("username")
+        password = request.data.get("password")
+    elif request.method == 'GET':
+        username = request.GET.get("username")
+        password = request.GET.get("password")
+
+
+    print(username)
+    print(password)
+
+        # Call the stored procedure or query your database
+    proc_name = "get1"
+    params = {
+               }
+
+    results = execute_stored_procedure(proc_name, params, True)
+    print(results)
+    if results:
+            return Response(results, status=200)  # Return user data if found
+    else:
+            return Response({"error": "Invalid username or password"}, status=401)  # Unauthorized
+
+
 #repository function
 def execute_stored_procedure(proc_name, params=None, is_select=True):
     

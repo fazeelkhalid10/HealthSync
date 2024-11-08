@@ -90,11 +90,11 @@ WSGI_APPLICATION = 'proback.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'healthsync',  # The name of your SQL Server database
+        'ENGINE': 'mssql',
+        'NAME': 'CareGenix',  # The name of your SQL Server database
         'USER': '',  # Leave this empty for Windows Authentication
         'PASSWORD': '',  # Leave this empty for Windows Authentication
-        'HOST': 'LAPTOP-QLPK4CVV\\SQLEXPRESS',  # Your SQL Server instance name
+        'HOST': 'DESKTOP-VSVECPH',  # Your SQL Server instance name
         'PORT': '',  # SQL Server default port (empty if you use the default port)
         'OPTIONS': {
             'driver': 'ODBC Driver 17 for SQL Server',  # Adjust this according to the installed driver

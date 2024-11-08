@@ -23,7 +23,9 @@ urlpatterns = [
    path('getUser/',views.getUser,name="getUser"),
    path('getUsername/',views.getUsername,name="getUsername"),
    path('insertpatient/',views.insertpatient,name="insertpatient"),
-   path('signupDoctor/',views.signupDoctor,name="signupDoctor")
+   path('signupDoctor/',views.signupDoctor,name="signupDoctor"),
+   path('getUser1/',views.getUser1,name="getUser1"),
+
 
 
    
