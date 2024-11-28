@@ -1,0 +1,140 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+  }
+  
+  .title {
+    color: #1977cc;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .searchContainer {
+    display: flex;
+    margin-bottom: 1rem;
+  }
+  
+  .searchInput {
+    flex-grow: 1;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #1977cc;
+    border-radius: 4px 0 0 4px;
+  }
+  
+  .searchButton {
+    background-color: #1977cc;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+  }
+  
+  .searchIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  .searchResults {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #1977cc;
+    border-radius: 4px;
+  }
+  
+  .searchResultItem {
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .searchResultItem:hover {
+    background-color: #e6f2ff;
+  }
+  
+  .conditionCard {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    border: 1px solid #1977cc;
+  }
+  
+  .conditionTitle {
+    color: #1977cc;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .conditionDescription {
+    margin-bottom: 1.5rem;
+  }
+  
+  .tabContainer {
+    display: flex;
+    margin-bottom: 1rem;
+  }
+  
+  .tabButton {
+    background-color: #f0f0f0;
+    border: 1px solid #1977cc;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px 4px 0 0;
+    margin-right: 0.5rem;
+  }
+  
+  .activeTab {
+    background-color: #1977cc;
+    color: white;
+  }
+  
+  .tabContent {
+    background-color: white;
+    border-radius: 0 0 4px 4px;
+    padding: 1rem;
+    border: 1px solid #1977cc;
+    border-top: none;
+  }
+  
+  .tabContentTitle {
+    color: #1977cc;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .recommendationList {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+  }
+  
+  .recommendationItem {
+    margin-bottom: 0.5rem;
+  }
+  
+  .welcomeCard {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    text-align: center;
+    border: 1px solid #1977cc;
+  }
+  
+  .welcomeTitle {
+    color: #1977cc;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .welcomeText {
+    color: #333;
+  }
+  
+  
