@@ -27,6 +27,10 @@ urlpatterns = [
    path('getUser1/',views.getUser1,name="getUser1"),
 
 
+    path('predict/', views.predict,name="predict")
+
+
+
 
    
 

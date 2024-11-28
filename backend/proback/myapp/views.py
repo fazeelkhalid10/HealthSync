@@ -59,10 +59,13 @@ def insertpatient(request):
     "IsActive":1,
     "Name": name,
     "DateOfBirth": dob,
-    "show":1
+    "show":1,
+    "Specialization":""
+    #"createdby":""
      }
 
-    execute_stored_procedure(proc_name,param,False)
+    result=execute_stored_procedure(proc_name,param,False)
+    print(result)
         # Call the stored procedure or query your database
     # proc_name = "InsertUser"
     # params = {
@@ -130,7 +133,7 @@ def signupDoctor(request):
     "Address": city,
     "IsActive":1,
     "Name": name,
-    "experience": 2,
+   # "experience": 2,
     "show":2,
     "Specialization":specialization
      }
@@ -275,3 +278,34 @@ def getUsername(request):
 
 
 
+
+from .utils import predict_disease
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json 
+@csrf_exempt
+@api_view(['GET', 'POST'])  # Allow both GET and POST methods
+def predict(request):
+
+
+
+    if request.method == 'POST':
+        symptoms = request.data.get("symptoms")
+        
+    elif request.method == 'GET':
+        symptoms = request.GET.get("symptoms")
+     
+
+
+    print(symptoms)
+  
+    predicted_diseases = predict_disease([symptoms])
+    
+        # Call the stored procedure or query your database
+   
+    print(predicted_diseases)
+    if predicted_diseases:
+            return Response({"result":predicted_diseases}, status=200)  # Return user data if found
+    else:
+            return Response({"result":predicted_diseases}, status=200)  # Return user data if found
+  # Unauthorized
