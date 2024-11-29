@@ -1,84 +1,191 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { useState } from 'react';
 
+import { useState } from 'react'
+import { Mic, MicOff, AlertCircle, Check, ChevronDown, Loader } from 'lucide-react'
+import styles from '../styles/DiseaseDetection.module.css'
+
+const diseases = [
+  { value: 'flu', label: 'Flu' },
+  { value: 'cold', label: 'Common Cold' },
+  { value: 'malaria', label: 'Malaria' },
+  { value: 'diabetes', label: 'Diabetes' },
+  { value: 'hypertension', label: 'Hypertension' },
+]
 
 export default function DiseaseBody() {
-  const [activeSection, setActiveSection] = useState('dropdown'); // Initialize the active section state
+  const [activeSection, setActiveSection] = useState('dropdown')
+  const [selectedDisease, setSelectedDisease] = useState('')
+  const [textInput, setTextInput] = useState('')
+  const [voiceInput, setVoiceInput] = useState('')
+  const [isListening, setIsListening] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState('idle')
+  const [errorMessage, setErrorMessage] = useState('')
 
-  const [voiceInput, setVoiceInput] = useState('');
+  const handleVoiceInput = () => {
+    setIsListening(!isListening)
+    // Implement actual voice recognition logic here
+  }
 
-  // Voice Recognition Functionality
-  const startVoiceRecognition = () => {
-      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-      recognition.lang = 'en-US';
-      recognition.interimResults = false;
-      recognition.maxAlternatives = 1;
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setSubmitStatus('loading')
+    setErrorMessage('')
 
-      recognition.start();
+    let input = ''
+    switch (activeSection) {
+      case 'dropdown':
+        input = selectedDisease
+        break
+      case 'text':
+        input = textInput
+        break
+      case 'voice':
+        input = voiceInput
+        break
+    }
 
-      recognition.onresult = (event) => {
-          setVoiceInput(event.results[0][0].transcript);
-      };
+    if (!input) {
+      setErrorMessage('Please provide input before submitting.')
+      setSubmitStatus('idle')
+      return
+    }
 
-      recognition.onerror = (event) => {
-          alert('Error occurred in recognition: ' + event.error);
-      };
-  };
-  return (    
-      <div className="symptom-form-container">
-            <h2>Symptom Input Form</h2>
+    // Simulating an API call
+    setTimeout(() => {
+      setSubmitStatus('success')
+      console.log('Form submitted:', { activeSection, input })
+    }, 2000)
+  }
 
-            {/* Section Heading Buttons */}
-            <div className="form-headings">
-                <button onClick={() => setActiveSection('dropdown')}>Option 1: Select from Dropdown</button>
-                <button onClick={() => setActiveSection('text')}>Option 2: Enter Symptoms via Text</button>
-                <button onClick={() => setActiveSection('voice')}>Option 3: Use Voice Input</button>
+  return (
+    <div className={styles.container}>
+      <h2 className={styles.title}>Advanced Symptom Analysis</h2>
+
+      <div className={styles.sectionButtons}>
+        {['dropdown', 'text', 'voice'].map((section) => (
+          <button
+            key={section}
+            className={`${styles.sectionButton} ${activeSection === section ? styles.active : ''}`}
+            onClick={() => setActiveSection(section)}
+          >
+            {section === 'dropdown' && 'Select Disease'}
+            {section === 'text' && 'Describe Symptoms'}
+            {section === 'voice' && 'Voice Input'}
+          </button>
+        ))}
+      </div>
+
+      <form onSubmit={handleSubmit} className={styles.form}>
+        {activeSection === 'dropdown' && (
+          <div className={styles.formSection}>
+            <label htmlFor="disease-dropdown" className={styles.label}>
+              Select a Disease:
+            </label>
+            <div className={styles.selectWrapper}>
+              <select
+                id="disease-dropdown"
+                name="disease-dropdown"
+                className={styles.select}
+                value={selectedDisease}
+                onChange={(e) => setSelectedDisease(e.target.value)}
+              >
+                <option value="">Select a disease</option>
+                {diseases.map((disease) => (
+                  <option key={disease.value} value={disease.value}>
+                    {disease.label}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className={styles.selectIcon} />
             </div>
+          </div>
+        )}
 
-            {/* Conditional Rendering Based on Active Section */}
-            {activeSection === 'dropdown' && (
-                <div className="form-section">
-                    <h3>Select from Dropdown</h3>
-                    <label htmlFor="disease-dropdown">Select a Disease:</label>
-                    <select id="disease-dropdown" name="disease-dropdown">
-                        <option value="">Select a disease</option>
-                        <option value="flu">Flu</option>
-                        <option value="cold">Common Cold</option>
-                        <option value="malaria">Malaria</option>
-                        <option value="diabetes">Diabetes</option>
-                        <option value="hypertension">Hypertension</option>
-                        {/* Add more options as needed */}
-                    </select>
-                    <button type="submit">Submit</button>
-                </div>
-            )}
+        {activeSection === 'text' && (
+          <div className={styles.formSection}>
+            <label htmlFor="text-input" className={styles.label}>
+              Describe Your Symptoms:
+            </label>
+            <textarea
+              id="text-input"
+              name="text-input"
+              placeholder="Enter your symptoms here..."
+              className={styles.textarea}
+              value={textInput}
+              onChange={(e) => setTextInput(e.target.value)}
+              rows={5}
+            />
+          </div>
+        )}
 
-            {activeSection === 'text' && (
-                <div className="form-section">
-                    <h3>Enter Symptoms via Text</h3>
-                    <label htmlFor="text-input">Enter Symptoms:</label>
-                    <input type="text" id="text-input" name="text-input" placeholder="Enter symptoms here..." />
-                    <button type="submit">Submit</button>
-                </div>
-            )}
+        {activeSection === 'voice' && (
+          <div className={styles.formSection}>
+            <label htmlFor="voice-input" className={styles.label}>
+              Describe Your Symptoms Using Voice:
+            </label>
+            <div className={styles.voiceInputContainer}>
+              <textarea
+                id="voice-input"
+                name="voice-input"
+                placeholder="Your voice input will appear here..."
+                value={voiceInput}
+                readOnly
+                className={styles.textarea}
+                rows={5}
+              />
+              <button
+                type="button"
+                onClick={handleVoiceInput}
+                className={`${styles.voiceButton} ${isListening ? styles.listening : ''}`}
+              >
+                {isListening ? <MicOff className={styles.icon} /> : <Mic className={styles.icon} />}
+              </button>
+            </div>
+          </div>
+        )}
 
-            {activeSection === 'voice' && (
-                <div className="form-section">
-                    <h3>Use Voice Input</h3>
-                    <label htmlFor="voice-input">Press the button and speak:</label>
-                    <input
-                        type="text"
-                        id="voice-input"
-                        name="voice-input"
-                        placeholder="Voice input will appear here..."
-                        value={voiceInput}
-                        readOnly
-                    />
-                    <button type="button" onClick={startVoiceRecognition}>Start Voice Input</button>
-                    <button type="submit">Submit</button>
-                </div>
-            )}
+        {errorMessage && (
+          <div className={styles.errorMessage}>
+            <AlertCircle className={styles.icon} />
+            {errorMessage}
+          </div>
+        )}
+
+        <button type="submit" className={styles.submitButton} disabled={submitStatus === 'success'}>
+          {submitStatus === 'loading' ? (
+            <>
+              <Loader className={`${styles.icon} ${styles.spinner}`} />
+              Analyzing...
+            </>
+          ) : submitStatus === 'success' ? (
+            <>
+              <Check className={styles.icon} />
+              Analysis Complete
+            </>
+          ) : (
+            'Analyze Symptoms'
+          )}
+        </button>
+      </form>
+
+      {submitStatus === 'success' && (
+        <div className={styles.resultCard}>
+          <h3 className={styles.resultTitle}>Analysis Results</h3>
+          <p className={styles.resultText}>
+            Based on the provided information, our system has generated an initial analysis.
+          </p>
+          <p className={styles.resultText}>
+            <strong>Predicted Condition: Bawaseer</strong>
+          </p>
+          <p className={styles.resultText}>
+            Please note that this is not a definitive diagnosis and should not replace professional medical advice.
+            We recommend consulting with a healthcare professional for accurate diagnosis and treatment.
+          </p>
+          <button className={styles.doctorButton}>
+            Find a Suitable Doctor
+          </button>
         </div>
-  );
+      )}
+    </div>
+  )
 }
+
