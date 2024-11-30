@@ -101,7 +101,9 @@ export default function Header() {
               <li><Link href="/HealthTip" className={router.pathname === "/HealthTip" ? "active" : ""}>
                   Health Tips
                 </Link></li>
-              <li><Link href="#doctors">ChatBot</Link></li>
+              <li><Link href="/ChatBot" className={router.pathname === "/ChatBot" ? "active" : ""}>
+                  ChatBot
+                </Link></li>
               <li className="dropdown">
                 <Link href="#"><span>Services</span> <i className="bi bi-chevron-down toggle-dropdown"></i></Link>
                 <ul>
