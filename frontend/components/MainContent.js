@@ -58,21 +58,22 @@ if(true){
                     <div className="icon-box" data-aos="zoom-out" data-aos-delay="300">
                       <i className="bi bi-clipboard-data"></i>
                       <h4>Our Reviews!</h4>
-                      <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                      <p>User-friendly interface and quick access to top-notch healthcare services. Five stars!</p>
+                      <p>Amazing platform! Booking an appointment was never this easy. Highly recommend it to everyone.</p>
                     </div>
                   </div>
                   <div className="col-xl-4 d-flex align-items-stretch">
                     <div className="icon-box" data-aos="zoom-out" data-aos-delay="400">
                       <i className="bi bi-gem"></i>
                       <h4>Our Achievements</h4>
-                      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                      <p>Recognized as a leading platform in healthcare innovation, empowering thousands to access quality medical services seamlessly.</p>
                     </div>
                   </div>
                   <div className="col-xl-4 d-flex align-items-stretch">
                     <div className="icon-box" data-aos="zoom-out" data-aos-delay="500">
                       <i className="bi bi-inboxes"></i>
                       <h4>Find More</h4>
-                      <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+                      <p>    Discover a wealth of healthcare resources, expert advice, and tailored solutions for your well-being.</p>
                     </div>
                   </div>
                 </div>
@@ -101,34 +102,35 @@ if(true){
               </Link>
             </div>
             <div className="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
-              <h3>About Us</h3>
-              <p>
-                Dolor iure expedita id fuga asperiores qui sunt consequatur minima. Quidem voluptas deleniti. Sit quia molestiae quia quas qui magnam itaque veritatis dolores. Corrupti totam ut eius incidunt reiciendis veritatis asperiores placeat.
-              </p>
-              <ul>
-                <li>
-                  <i className="fa-solid fa-vial-circle-check"></i>
-                  <div>
-                    <h5>Ullamco laboris nisi ut aliquip consequat</h5>
-                    <p>Magni facilis facilis repellendus cum excepturi quaerat praesentium libre trade</p>
-                  </div>
-                </li>
-                <li>
-                  <i className="fa-solid fa-pump-medical"></i>
-                  <div>
-                    <h5>Magnam soluta odio exercitationem reprehenderi</h5>
-                    <p>Quo totam dolorum at pariatur aut distinctio dolorum laudantium illo direna pasata redi</p>
-                  </div>
-                </li>
-                <li>
-                  <i className="fa-solid fa-heart-circle-xmark"></i>
-                  <div>
-                    <h5>Voluptatem et qui exercitationem</h5>
-                    <p>Et velit et eos maiores est tempora et quos dolorem autem tempora incidunt maxime veniam</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
+  <h3 className="text-3xl md:text-4xl font-bold mb-4">About Us</h3>
+  <p className="text-lg text-gray-700 mb-6">
+    We are dedicated to delivering outstanding healthcare services with a focus on innovation, compassion, and reliability. Our team of skilled professionals ensures your well-being with personalized care tailored to your individual needs.
+  </p>
+  <ul className="space-y-6">
+    <li className="flex items-start">
+      <i className="fa-solid fa-vial-circle-check text-blue-600 text-2xl mr-4"></i>
+      <div>
+        <h5 className="font-semibold text-xl text-gray-800">Quality Healthcare Solutions</h5>
+        <p className="text-gray-600">We provide solutions designed to enhance your health and well-being through cutting-edge technology and compassionate care.</p>
+      </div>
+    </li>
+    <li className="flex items-start">
+      <i className="fa-solid fa-pump-medical text-blue-600 text-2xl mr-4"></i>
+      <div>
+        <h5 className="font-semibold text-xl text-gray-800">Innovative Healthcare Delivery</h5>
+        <p className="text-gray-600">We leverage the latest innovations to ensure that our healthcare services are accessible, efficient, and of the highest quality.</p>
+      </div>
+    </li>
+    <li className="flex items-start">
+      <i className="fa-solid fa-heart-circle-xmark text-blue-600 text-2xl mr-4"></i>
+      <div>
+        <h5 className="font-semibold text-xl text-gray-800">Personalized Patient Care</h5>
+        <p className="text-gray-600">Our approach focuses on understanding each patient's unique needs and delivering customized care that best suits their health goals.</p>
+      </div>
+    </li>
+  </ul>
+</div>
+
           </div>
         </div>
       </section>
@@ -140,7 +142,7 @@ if(true){
       {/* Section Title */}
       <div className="container section-title" data-aos="fade-up">
         <h2>Frequently Asked Questions</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <p>Our solutions are designed to address your needs in unique and effective ways, ensuring that every requirement is met with precision and care.</p>
       </div>
       {/* End Section Title */}
 
