@@ -96,7 +96,7 @@ if(true){
   height={300} // Specify the height
   priority // Optional: to load the image early if it's important for the page
 />
-              <Link href="https://youtu.be/SjADMZPAPoc?feature=shared" className="glightbox pulsating-play-btn">
+              <Link href="https://drive.google.com/file/d/1TK88QikqPaPzhGkIt_FUtkRoKO0sQiLq/view?usp=sharing" className="glightbox pulsating-play-btn">
                 {/* You can also add an icon or text for the link if needed */}
               </Link>
             </div>
