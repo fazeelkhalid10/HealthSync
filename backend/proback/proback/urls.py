@@ -17,7 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
+
 from myapp import views
+from myapp.views import getDoctor
 urlpatterns = [
     path('admin/', admin.site.urls),
    path('getUser/',views.getUser,name="getUser"),
@@ -25,11 +27,9 @@ urlpatterns = [
    path('insertpatient/',views.insertpatient,name="insertpatient"),
    path('signupDoctor/',views.signupDoctor,name="signupDoctor"),
    path('getUser1/',views.getUser1,name="getUser1"),
+    path('predict/', views.predict,name="predict"),
 
-
-    path('predict/', views.predict,name="predict")
-
-
+    path('getDoctor/', views.getDoctor, name='getDoctor'),
 
 
    

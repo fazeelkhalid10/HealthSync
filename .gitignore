@@ -3,3 +3,5 @@ venv
 
 frontend/package.json
 *.json
+backend/proback/myapp/utils.py
+backend/proback/proback/settings.py

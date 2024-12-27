@@ -97,7 +97,11 @@ export default function Header() {
                   Disease Detection
                 </Link>
               </li>
-              <li><Link href="#services">Find Doctor</Link></li>
+              <li>
+              <Link href="/doctors" className={router.pathname === "/doctors" ? "active" : ""}>
+                  Find Doctors
+                </Link>
+              </li>
               <li><Link href="/HealthTip" className={router.pathname === "/HealthTip" ? "active" : ""}>
                   Health Tips
                 </Link></li>
@@ -135,9 +139,11 @@ export default function Header() {
                     className="form-control me-2"
                     style={{ width: '250px', height: '40px' }}
                   />
-                  <button type="submit" className="btn btn-primary" style={{ height: '40px' }}>
-                    Search
+                 <button className="w-full bg-[#1977cc] text-white py-2 px-2 rounded-full font-medium hover:bg-[#2DA8F0] transition-colors duration-300">
+                      Search
                   </button>
+
+
                 </form>
 
                {/* Suggestions Dropdown */}

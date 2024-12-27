@@ -2,6 +2,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from django.db import connection
+from django.shortcuts import render
 
 
 
@@ -309,3 +310,54 @@ def predict(request):
     else:
             return Response({"result":predicted_diseases}, status=200)  # Return user data if found
   # Unauthorized
+
+
+# @api_view(['GET'])
+# def get_user_api(request):
+#     username = request.GET.get('username')  # Extract 'username' from query params
+    
+    
+#     if not username:
+#         return Response({"error": "Username is required."}, status=400)
+    
+#     proc_name = "GetUser"
+#     params = {
+#         "Username": username,
+#         "show": 2,  # Fetch by username
+#     }
+    
+#     # Execute the stored procedure
+#     with connection.cursor() as cursor:
+#         param_str = ', '.join([f"@{k}='{v}'" for k, v in params.items()])
+#         cursor.execute(f"EXEC {proc_name} {param_str}")
+#         rows = cursor.fetchall()
+#         col_names = [desc[0] for desc in cursor.description]
+    
+#     # Process results
+#     results = [dict(zip(col_names, row)) for row in rows]
+#     print("agya maal",results)
+   
+#     if results:
+        
+#         return Response(results, status=200)
+#     else:
+#         return Response({"message": "No user found."}, status=404)
+
+# # Regular Django View: Render HTML page with user details
+# from django.shortcuts import render
+
+# def display_user(request):
+#     return render(request, 'display_user.html')
+
+@api_view(['GET', 'POST'])  # Allow both GET and POST methods
+def getDoctor(request):
+     if request.method=='GET':
+          proc_name="GetDoctor"
+          results = execute_stored_procedure(proc_name)
+          print("haram",results)
+          if results:
+                return Response({"result":results}, status=200)  # Return user data if found
+          else:
+                return Response({"result":False}, status=200)  # Return user data if found
+            
+          

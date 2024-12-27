@@ -9,6 +9,33 @@ export default function MainPage() {
   const { data: session, status } = useSession();
 const [name,setName]=useState(null)
 const router = useRouter();
+const [activeIndex, setActiveIndex] = useState(0);
+
+const faqData = [
+  {
+    question: "Why HealthSync?",
+    answer: "HealthSync offers a comprehensive healthcare management platform that seamlessly connects patients with healthcare providers. Our platform reduces wait times by 40%, enables secure access to medical records, and coordinates care across providers."
+  },
+  {
+    question: "Any Hidden Charges?",
+    answer: "We maintain complete transparency in our pricing. The basic plan includes appointment scheduling, medical record access, and prescription management at no additional cost. Premium features are clearly listed with their respective charges."
+  },
+  {
+    question: "How think works?",
+    answer: "HealthSync uses advanced AI technology to match patients with suitable healthcare providers based on their needs, location, and insurance coverage. Schedule appointments, receive reminders, and communicate with healthcare providers through our secure platform."
+  },
+  {
+    question: "Are Doctor Trusted?",
+    answer: "Every healthcare provider on HealthSync undergoes rigorous verification. We validate medical licenses, credentials, and practice history. Our providers maintain an average rating of 4.8/5 from verified patient reviews."
+  },
+  {
+    question: "Affilated Hospitals?",
+    answer: "HealthSync partners with over 500 leading hospitals nationwide, including major healthcare networks and specialized treatment centers. Our network includes renowned institutions ensuring access to quality healthcare wherever you are."
+  },
+  {
+    question: "Number of Users?",
+    answer: "HealthSync serves over 2 million active users and facilitates more than 100,000 appointments monthly. Our platform has a 96% user satisfaction rate and processes over 50,000 secure medical record transfers daily."
+  }];
 // useEffect(() => {
 //   if (session && session.user) {
 //     setName(session.user.username); // Set name when session exists
@@ -149,84 +176,21 @@ if(true){
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-10" data-aos="fade-up" data-aos-delay="100">
-            <div className="faq-container">
-              <div className="faq-item faq-active">
-                <h3>Why HealthSync?</h3>
+          <div className="faq-container">
+            {faqData.map((faq, index) => (
+              <div 
+                key={index} 
+                className={`faq-item ${activeIndex === index ? 'faq-active' : ''}`}
+                onClick={() => setActiveIndex(activeIndex === index ? -1 : index)}
+              >
+                <h3>{faq.question}</h3>
                 <div className="faq-content">
-                  <p>
-                    Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida.
-                    Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
-                  </p>
+                  <p>{faq.answer}</p>
                 </div>
                 <i className="faq-toggle bi bi-chevron-right"></i>
-              </div>
-              {/* End Faq item */}
-
-              <div className="faq-item">
-                <h3>Any Hidden Charges?</h3>
-                <div className="faq-content">
-                  <p>
-                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id
-                    donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit
-                    ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
-                  </p>
-                </div>
-                <i className="faq-toggle bi bi-chevron-right"></i>
-              </div>
-              {/* End Faq item */}
-
-              <div className="faq-item">
-                <h3> How think works ?</h3>
-                <div className="faq-content">
-                  <p>
-                    Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum
-                    integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt.
-                    Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi
-                    quis
-                  </p>
-                </div>
-                <i className="faq-toggle bi bi-chevron-right"></i>
-              </div>
-              {/* End Faq item */}
-
-              <div className="faq-item">
-                <h3> Are Doctor Trusted?</h3>
-                <div className="faq-content">
-                  <p>
-                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id
-                    donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit
-                    ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
-                  </p>
-                </div>
-                <i className="faq-toggle bi bi-chevron-right"></i>
-              </div>
-              {/* End Faq item */}
-
-              <div className="faq-item">
-                <h3>Affilated Hospitals?</h3>
-                <div className="faq-content">
-                  <p>
-                    Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel
-                    risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida
-                    quis blandit turpis cursus in
-                  </p>
-                </div>
-                <i className="faq-toggle bi bi-chevron-right"></i>
-              </div>
-              {/* End Faq item */}
-
-              <div className="faq-item">
-                <h3>Number of Users?</h3>
-                <div className="faq-content">
-                  <p>
-                    Enim ea facilis quaerat voluptas quidem et dolorem. Quis et consequatur non sed in suscipit sequi.
-                    Distinctio ipsam dolore et.
-                  </p>
-                </div>
-                <i className="faq-toggle bi bi-chevron-right"></i>
-              </div>
-              {/* End Faq item */}
-            </div>
+        </div>
+      ))}
+    </div>
           </div>
           {/* End Faq Column */}
         </div>

@@ -69,7 +69,7 @@ ROOT_URLCONF = 'proback.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS':  [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -94,7 +94,7 @@ DATABASES = {
         'NAME': 'HealthSync',
         'USER': '',  # Leave empty for Windows Authentication
         'PASSWORD': '',  # Leave empty for Windows Authentication
-        'HOST': 'DESKTOP-VSVECPH',
+        'HOST':  r'(localdb)\MSSQLLocalDB', #change this for your pc
         'PORT': '',  # Default port for SQL Server
         'OPTIONS': {
             'driver': 'ODBC Driver 17 for SQL Server',
