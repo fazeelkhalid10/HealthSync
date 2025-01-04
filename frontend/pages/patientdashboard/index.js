@@ -2,24 +2,31 @@
 
 import { useState } from 'react';
 import styles from '/styles/Dashboard.module.css';
+import { getSession, useSession } from 'next-auth/react';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
-const Dashboard = () => {
+const Dashboard = ({patientData}) => {
   const [activeTab, setActiveTab] = useState('home'); // State to track active tab
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
 
+  const {data:session,status}=useSession();
+ const[patientInfo,setpatientinfo]=(patientData)
   // Sample patient information
-  const patientInfo = {
-    name: 'John Doe',
-    email: 'johndoe@example.com',
-    address: '123 Main St, Springfield, USA',
-    phone: '(123) 456-7890',
-    dob: '1990-01-01',
-  };
+  // const patientInfo = {
+  //   name: 'John Doe',
+  //   email: 'johndoe@example.com',
+  //   address: '123 Main St, Springfield, USA',
+  //   phone: '(123) 456-7890',
+  //   dob: '1990-01-01',
+  // };
 
   return (
+    <>
+    <Header/>
     <div className={styles.container}>
       <div className={styles.sidebar}>
         <h2>Patient Dashboard</h2>
@@ -121,7 +128,40 @@ const Dashboard = () => {
         )}
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
+export async function getServerSideProps(context) {
+  // Retrieve the session on the server side
+  const session = await getSession(context);
+
+  // Check if session exists and contains a valid patientid
+
+
+  const  id  = session.user.id; // Get patientid from session
+ console.log(id);
+  try {
+    // Fetch patient data from the API using patientid
+    const response = await fetch(`http://127.0.0.1:8000/getPatient/?patientid=${id}`);
+     console.log(response);
+    if (!response.ok) {
+      return { notFound: true }; // Return 404 if the patient is not found
+    }
+
+    const patientData = await response.json();
+    console.log(patientData);
+    return {
+      props: {
+        patientData, // Pass patient data to the page
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching patient data:", error);
+    return {
+      notFound: true, // Return 404 in case of an error
+    };
+  }
+}
 
 export default Dashboard;

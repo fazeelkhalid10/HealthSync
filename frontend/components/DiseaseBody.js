@@ -19,6 +19,7 @@ export default function DiseaseBody() {
   const [isListening, setIsListening] = useState(false)
   const [submitStatus, setSubmitStatus] = useState('idle')
   const [errorMessage, setErrorMessage] = useState('')
+  const [Disease, setdisease] = useState('')
 
   const handleVoiceInput = () => {
     setIsListening(!isListening)
@@ -34,12 +35,15 @@ export default function DiseaseBody() {
     switch (activeSection) {
       case 'dropdown':
         input = selectedDisease
+       
         break
       case 'text':
         input = textInput
+        console.log(input);
         break
       case 'voice':
         input = voiceInput
+        console.log(input);
         break
     }
 
@@ -48,12 +52,21 @@ export default function DiseaseBody() {
       setSubmitStatus('idle')
       return
     }
-
+    try {
+    fetch(`/api/predict?symptoms=${encodeURIComponent(input)}`).then(res=>res.json()).then(data=>{
+      setdisease(data.result[0]);
+      setSubmitStatus('success');
+    });
+     // const data = await response.json();
+      //setResult(data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
     // Simulating an API call
-    setTimeout(() => {
-      setSubmitStatus('success')
-      console.log('Form submitted:', { activeSection, input })
-    }, 2000)
+  
+      
+    //  console.log('Form submitted:', { activeSection, input })
+    
   }
 
   return (
@@ -174,7 +187,7 @@ export default function DiseaseBody() {
             Based on the provided information, our system has generated an initial analysis.
           </p>
           <p className={styles.resultText}>
-            <strong>Predicted Condition: Bawaseer</strong>
+            <strong>Predicted Condition: {Disease}</strong>
           </p>
           <p className={styles.resultText}>
             Please note that this is not a definitive diagnosis and should not replace professional medical advice.

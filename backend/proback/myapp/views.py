@@ -190,6 +190,35 @@ def getUser(request):
             return Response({"error": "Invalid username or password"}, status=401)  # Unauthorized
 
 
+@api_view(['GET', 'POST'])  # Allow both GET and POST methods
+def getPatient(request):
+    if request.method == 'POST':
+        pateintid = request.data.get("patientid")
+       
+    elif request.method == 'GET':
+        pateintid = request.GET.get("patientid")
+        
+
+
+    print(pateintid)
+    #print(password)
+
+        # Call the stored procedure or query your database
+    proc_name = "GetUser"
+    params = {
+           
+            "patientid": pateintid,
+            "show":3    }
+
+    results = execute_stored_procedure(proc_name, params, True)
+    print(results)
+    if results:
+            return Response(results, status=200)  # Return user data if found
+    else:
+            return Response({"error": "Invalid username or password"}, status=401)  # Unauthorized
+
+
+
 
 @api_view(['GET', 'POST'])  # Allow both GET and POST methods
 def getUser1(request):

@@ -30,6 +30,7 @@ urlpatterns = [
     path('predict/', views.predict,name="predict"),
 
     path('getDoctor/', views.getDoctor, name='getDoctor'),
+    path('getPatient/', views.getPatient, name='getPatient'),
 
 
    

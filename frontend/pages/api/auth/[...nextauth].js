@@ -2,6 +2,7 @@ import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 export default NextAuth({
+  secret: 'G1rvKU+fXoXc9j8Kwzz1OBNA3j4UwR3a5v4KHlnUMAo=',
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -10,45 +11,39 @@ export default NextAuth({
         password: { label: "Password", type: "password", placeholder: "Your password" },
       },
       async authorize(credentials) {
-        console.log('Username:', credentials.username);
-        console.log('Password:', credentials.password);
-      
-        const response = await fetch('http://127.0.0.1:8000/getUser/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            username: credentials.username,
-            password: credentials.password,
-          }),
-        });
-      
-        // Log the status and response for debugging
-        console.log('Response Status:', response.status);
-        const userArray = await response.json(); // Store the response as userArray
-        console.log('API Response:', userArray);
-      
-        // Check if the response is OK
-        if (!response.ok) {
-            console.error('Error during authentication:', response.statusText);
-            return null; // Return null on error
-        }
-        
-        // Check if a user was returned and get the first user from the array
-        if (userArray && userArray.length > 0) {
-            const user = userArray[0]; // Get the first user object from the array
+        try {
+          // Send API request to fetch user data
+          const response = await fetch('http://127.0.0.1:8000/getUser/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              username: credentials.username,
+              password: credentials.password,
+            }),
+          });
+
+          const userArray = await response.json(); // Parse response JSON
+          console.log('API Response:', userArray);
+
+          // Validate response and extract user
+          if (response.ok && userArray.length > 0) {
+            const user = userArray[0];
+            console.log(user) // Use the first user from the array
             return {
-              id: user.UserID,
+              id: user.id, // Use UID as the user ID
               username: user.Username,
-              email: user.Email,
-              isActive: user.IsActive,
               role: user.Rolee,
             };
+          } else {
+            console.error('No user found or authentication failed');
+            return null;
+          }
+        } catch (error) {
+          console.error('Error during authentication:', error);
+          return null;
         }
-
-        // If no valid user is found or password doesn't match
-        return null;
       },
     }),
   ],
@@ -56,19 +51,23 @@ export default NextAuth({
     signIn: '/login', // Custom sign-in page
   },
   session: {
-    jwt: true, // Store session as JWT
+    jwt: true, // Use JSON Web Tokens for sessions
   },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
-        token.username = user.username;
+        token.id = user.id; // Assign UID to the token
+        token.username = user.username; // Assign Username to the token
+        token.role = user.role; // Assign Rolee to the token
       }
       return token;
     },
     async session({ session, token }) {
-      session.user.id = token.id;
-      session.user.username = token.username;
+      session.user = {
+        id: token.id, // Include UID in the session
+        username: token.username, // Include Username in the session
+        role: token.role, // Include Rolee in the session
+      };
       return session;
     },
   },
