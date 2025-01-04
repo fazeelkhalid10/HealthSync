@@ -25,10 +25,10 @@ router.push('/login')
 
 
 }
-console.log(session.user.id);
-console.log(session.user.role);
+// console.log(session.user.id);
+// console.log(session.user.role);
 
-console.log(session.user.username);
+// console.log(session.user.username);
 
     
   return (

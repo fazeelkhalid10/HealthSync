@@ -29,8 +29,7 @@ export default NextAuth({
 
           // Validate response and extract user
           if (response.ok && userArray.length > 0) {
-            const user = userArray[0];
-            console.log(user) // Use the first user from the array
+            const user = userArray[0]; // Use the first user from the array
             return {
               id: user.id, // Use UID as the user ID
               username: user.Username,
