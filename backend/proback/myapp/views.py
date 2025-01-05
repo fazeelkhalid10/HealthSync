@@ -382,11 +382,40 @@ def predict(request):
 def getDoctor(request):
      if request.method=='GET':
           proc_name="GetDoctor"
-          results = execute_stored_procedure(proc_name)
+          params = {
+         
+            #"Username": username,
+            "show":1
+           
+             }
+
+          results = execute_stored_procedure(proc_name,params)
           print("haram",results)
           if results:
                 return Response({"result":results}, status=200)  # Return user data if found
           else:
                 return Response({"result":False}, status=200)  # Return user data if found
             
-          
+@api_view(['GET', 'POST'])  # Allow both GET and POST methods
+def getDoctorfordesease(request):
+    if request.method=='POST':
+          searchquerry = request.data.get("searchquerry")
+    elif request.method == 'GET':
+          searchquerry = request.GET.get("searchquerry")     
+    print(searchquerry)
+    proc_name="GetDoctor"
+    params = {
+         
+            "searchquerry": searchquerry,
+            "show":2,
+           
+             }
+
+    results = execute_stored_procedure(proc_name,params,True)
+    print("haram",results)
+    if results:
+        return Response({"result":results}, status=200)  # Return user data if found
+    else:
+            return Response({"result":False}, status=200)  # Return user data if found
+            
+                    

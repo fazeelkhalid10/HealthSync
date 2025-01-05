@@ -31,6 +31,9 @@ urlpatterns = [
 
     path('getDoctor/', views.getDoctor, name='getDoctor'),
     path('getPatient/', views.getPatient, name='getPatient'),
+    path('getDoctorfordesease/', views.getDoctorfordesease, name='getDoctorfordesease'),
+
+    
 
 
    

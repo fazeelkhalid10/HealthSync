@@ -20,7 +20,7 @@ export default function Header() {
   const handleSearch = (e) => {
     e.preventDefault();
     if (specialization) {
-      router.push(`/search?specialization=${specialization}`);
+      router.push(`/doctors/${specialization}`);
     }
   };
 
