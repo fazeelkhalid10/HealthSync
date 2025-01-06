@@ -418,4 +418,48 @@ def getDoctorfordesease(request):
     else:
             return Response({"result":False}, status=200)  # Return user data if found
             
-                    
+@api_view(['GET', 'POST'])  # Allow both GET and POST methods
+def getbloodpressure(request):
+    if request.method=='POST':
+          patientid = request.data.get("patientid")
+    elif request.method == 'GET':
+          patientid = request.GET.get("patientid")     
+    print(patientid)
+    proc_name="GetReadings"
+    params = {
+         
+            "PatientID":patientid ,
+            "show":1,
+           
+             }
+
+    results = execute_stored_procedure(proc_name,params,True)
+    print("haram",results)
+    if results:
+        return Response({"result":results}, status=200)  # Return user data if found
+    else:
+            return Response({"result":False}, status=200)  # Return user data if found
+            
+@api_view(['GET', 'POST'])  # Allow both GET and POST methods
+def getbloodsugar(request):
+    if request.method=='POST':
+          patientid = request.data.get("patientid")
+    elif request.method == 'GET':
+          patientid = request.GET.get("patientid")     
+    print(patientid)
+    proc_name="GetReadings"
+    params = {
+         
+            "PatientID":patientid ,
+            "show":2,
+           
+             }
+
+    results = execute_stored_procedure(proc_name,params,True)
+    print("haram",results)
+    if results:
+        return Response({"result":results}, status=200)  # Return user data if found
+    else:
+            return Response({"result":False}, status=200)  # Return user data if found
+            
+                                        

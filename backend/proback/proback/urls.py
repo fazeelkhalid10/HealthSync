@@ -32,6 +32,10 @@ urlpatterns = [
     path('getDoctor/', views.getDoctor, name='getDoctor'),
     path('getPatient/', views.getPatient, name='getPatient'),
     path('getDoctorfordesease/', views.getDoctorfordesease, name='getDoctorfordesease'),
+    path('getbloodpressure/', views.getbloodpressure, name='getbloodpressure'),
+    path('getbloodsugar/', views.getbloodsugar, name='getbloodsugar'),
+
+
 
     
 
