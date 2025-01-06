@@ -118,6 +118,23 @@ if(true){
                       <Ellipsis size={34} color="#0066cc" />
                       <h4>Find More</h4>
                       <p>    Discover a wealth of healthcare resources, expert advice, and tailored solutions for your well-being.</p>
+                      <a
+                      href="/login"
+                      style={{
+                      backgroundColor: "#1977cc",
+                      color: "#ffffff",
+                      padding: "7px 20px",
+                      textDecoration: "none",
+                      border: "none",
+                      borderRadius: "20px",
+                      fontSize: "16px",
+                      cursor: "pointer",
+                      marginTop: "10px",
+                      display: "inline-block",
+                      }}
+                      >
+                     See More
+                     </a>
                     </div>
                   </div>
                 </div>
