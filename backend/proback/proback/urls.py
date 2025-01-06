@@ -31,6 +31,21 @@ urlpatterns = [
     path('predict/', views.predict,name="predict"),
 
     path('getDoctor/', views.getDoctor, name='getDoctor'),
-   path('getDoctorbyId/<int:id>/', views.getDoctorbyId, name='getDoctorbyId'),
+    path('getPatient/', views.getPatient, name='getPatient'),
+    path('getDoctorfordesease/', views.getDoctorfordesease, name='getDoctorfordesease'),
+    path('getbloodpressure/', views.getbloodpressure, name='getbloodpressure'),
+    path('getbloodsugar/', views.getbloodsugar, name='getbloodsugar'),
 
+
+
+    
+
+
+   
+
+
+
+
+
+    
 ]

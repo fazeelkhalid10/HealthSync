@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { Mic, MicOff, AlertCircle, Check, ChevronDown, Loader } from 'lucide-react'
 import styles from '../styles/DiseaseDetection.module.css'
+import { useRouter } from 'next/router'
 
 const diseases = [
   { value: 'flu', label: 'Flu' },
@@ -19,7 +20,52 @@ export default function DiseaseBody() {
   const [isListening, setIsListening] = useState(false)
   const [submitStatus, setSubmitStatus] = useState('idle')
   const [errorMessage, setErrorMessage] = useState('')
-
+  const [Disease, setdisease] = useState('')
+  const[search,setsearch]=useState();
+  const router=useRouter();
+  const diseaseToSpecialization = {
+    'Fungal infection': ['Dermatologist'],
+    'Allergy': ['Allergist'],
+    'GERD': ['Gastroenterologist'],
+    'Chronic cholestasis': ['Gastroenterologist'],
+    'Drug reaction': ['Allergist', 'Internal Medicine'],
+    'Peptic ulcer disease': ['Gastroenterologist'],
+    'AIDS': ['Internal Medicine'],
+    'Diabetes': ['Endocrinologist'],
+    'Gastroenteritis': ['Gastroenterologist'],
+    'Bronchial Asthma': ['Pulmonologist'],
+    'Hypertension': ['Cardiologist'],
+    'Migraine': ['Neurologist'],
+    'Cervical spondylosis': ['Neurologist'],
+    'Paralysis (brain hemorrhage)': ['Neurologist'],
+    'Jaundice': ['Hepatologist'],
+    'Malaria': ['Internal Medicine'],
+    'Chicken pox': ['Pediatrician', 'Internal Medicine'],
+    'Dengue': ['Internal Medicine'],
+    'Typhoid': ['Internal Medicine'],
+    'Hepatitis A': ['Hepatologist'],
+    'Hepatitis B': ['Hepatologist'],
+    'Hepatitis C': ['Hepatologist'],
+    'Hepatitis D': ['Hepatologist'],
+    'Hepatitis E': ['Hepatologist'],
+    'Alcoholic hepatitis': ['Hepatologist'],
+    'Tuberculosis': ['Pulmonologist'],
+    'Common Cold': ['Otolaryngologist'],
+    'Pneumonia': ['Pulmonologist'],
+    'Dimorphic Hemorrhoids': ['Internal Medicine'],
+    'Heart attack': ['Cardiologist'],
+    'Varicose veins': ['Phlebologist'],
+    'Hypothyroidism': ['Endocrinologist'],
+    'Hyperthyroidism': ['Endocrinologist'],
+    'Hypoglycemia': ['Endocrinologist'],
+    'Osteoarthritis': ['Rheumatologist'],
+    'Arthritis': ['Rheumatologist'],
+    '(vertigo) Paroxysmal Positional Vertigo': ['Neurologist'],
+    'Acne': ['Dermatologist'],
+    'Urinary tract infection': ['Urologist'],
+    'Psoriasis': ['Dermatologist'],
+    'Impetigo': ['Dermatologist'],
+};
   const handleVoiceInput = () => {
     setIsListening(!isListening)
     // Implement actual voice recognition logic here
@@ -34,12 +80,15 @@ export default function DiseaseBody() {
     switch (activeSection) {
       case 'dropdown':
         input = selectedDisease
+       
         break
       case 'text':
         input = textInput
+        console.log(input);
         break
       case 'voice':
         input = voiceInput
+        console.log(input);
         break
     }
 
@@ -48,12 +97,22 @@ export default function DiseaseBody() {
       setSubmitStatus('idle')
       return
     }
-
+    try {
+    fetch(`/api/predict?symptoms=${encodeURIComponent(input)}`).then(res=>res.json()).then(data=>{
+      setdisease(data.result[0]);
+      setSubmitStatus('success');
+      setsearch(diseaseToSpecialization[data.result[0]])
+    });
+     // const data = await response.json();
+      //setResult(data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
     // Simulating an API call
-    setTimeout(() => {
-      setSubmitStatus('success')
-      console.log('Form submitted:', { activeSection, input })
-    }, 2000)
+  
+      
+    //  console.log('Form submitted:', { activeSection, input })
+    
   }
 
   return (
@@ -174,13 +233,13 @@ export default function DiseaseBody() {
             Based on the provided information, our system has generated an initial analysis.
           </p>
           <p className={styles.resultText}>
-            <strong>Predicted Condition: Bawaseer</strong>
+            <strong>Predicted Condition: {Disease}</strong>
           </p>
           <p className={styles.resultText}>
             Please note that this is not a definitive diagnosis and should not replace professional medical advice.
             We recommend consulting with a healthcare professional for accurate diagnosis and treatment.
           </p>
-          <button className={styles.doctorButton}>
+          <button className={styles.doctorButton} onClick={()=>router.push(`/doctors/${search}`)}>
             Find a Suitable Doctor
           </button>
         </div>

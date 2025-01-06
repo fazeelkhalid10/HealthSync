@@ -20,7 +20,7 @@ export default function Header() {
   const handleSearch = (e) => {
     e.preventDefault();
     if (specialization) {
-      router.push(`/search?specialization=${specialization}`);
+      router.push(`/doctors/${specialization}`);
     }
   };
 
@@ -187,7 +187,7 @@ export default function Header() {
 
               {session ? (
                 <>
-                  <li><Link href="#account" className="cta-btn">Account</Link></li>
+                  <li><Link href="/patientdashboard" className="cta-btn">Account</Link></li>
                   <li>
                     <button className='btn btn-primary' onClick={() => signOut({ callbackUrl: '/login' })}>Sign Out</button>
                   </li>

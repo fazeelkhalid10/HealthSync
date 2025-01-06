@@ -1,0 +1,11 @@
+.chartscontainer {
+    display: flex;
+    justify-content: space-between; /* Space the charts equally */
+    align-items: flex-start; /* Align charts at the top */
+    gap: 20px; /* Optional: space between charts */
+  }
+  
+  .chart {
+    width: 48%; /* Make each chart take up roughly half of the width */
+  }
+  

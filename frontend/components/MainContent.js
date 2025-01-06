@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { useSession,signOut } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { ClipboardPenLine , Gem ,Ellipsis} from "lucide-react";
+
 
 export default function MainPage() {
   const { data: session, status } = useSession();
@@ -82,25 +84,57 @@ if(true){
               <div className="d-flex flex-column justify-content-center">
                 <div className="row gy-4">
                   <div className="col-xl-4 d-flex align-items-stretch">
-                    <div className="icon-box" data-aos="zoom-out" data-aos-delay="300">
-                      <i className="bi bi-clipboard-data"></i>
+                    <div className="icon-box" data-aos="zoom-out" data-aos-delay="300"  style={{
+                     display: "flex", 
+                     flexDirection: "column", 
+                     alignItems: "center", 
+                     textAlign: "center" // Ensures text alignment
+                     }} >
+                    <ClipboardPenLine size={34} color=" #0066cc"  />
                       <h4>Our Reviews!</h4>
                       <p>User-friendly interface and quick access to top-notch healthcare services. Five stars!</p>
                       <p>Amazing platform! Booking an appointment was never this easy. Highly recommend it to everyone.</p>
                     </div>
                   </div>
                   <div className="col-xl-4 d-flex align-items-stretch">
-                    <div className="icon-box" data-aos="zoom-out" data-aos-delay="400">
-                      <i className="bi bi-gem"></i>
-                      <h4>Our Achievements</h4>
+                    <div className="icon-box" data-aos="zoom-out" data-aos-delay="400"  style={{
+                    display: "flex", 
+                    flexDirection: "column", 
+                    alignItems: "center", 
+                    textAlign: "center" // Ensures text alignment
+                      }}>
+                      <Gem size={34} color="#0066cc" />
+                      <h4>Achievements</h4>
                       <p>Recognized as a leading platform in healthcare innovation, empowering thousands to access quality medical services seamlessly.</p>
                     </div>
                   </div>
                   <div className="col-xl-4 d-flex align-items-stretch">
-                    <div className="icon-box" data-aos="zoom-out" data-aos-delay="500">
-                      <i className="bi bi-inboxes"></i>
+                    <div className="icon-box" data-aos="zoom-out" data-aos-delay="500"  style={{
+                      display: "flex", 
+                      flexDirection: "column", 
+                      alignItems: "center", 
+                      textAlign: "center" // Ensures text alignment
+                      }}>
+                      <Ellipsis size={34} color="#0066cc" />
                       <h4>Find More</h4>
                       <p>    Discover a wealth of healthcare resources, expert advice, and tailored solutions for your well-being.</p>
+                      <a
+                      href="/login"
+                      style={{
+                      backgroundColor: "#1977cc",
+                      color: "#ffffff",
+                      padding: "7px 20px",
+                      textDecoration: "none",
+                      border: "none",
+                      borderRadius: "20px",
+                      fontSize: "16px",
+                      cursor: "pointer",
+                      marginTop: "10px",
+                      display: "inline-block",
+                      }}
+                      >
+                     See More
+                     </a>
                     </div>
                   </div>
                 </div>
@@ -124,7 +158,7 @@ if(true){
   height={300} // Specify the height
   priority // Optional: to load the image early if it's important for the page
 />
-              <Link href="https://youtu.be/SjADMZPAPoc?feature=shared" className="glightbox pulsating-play-btn">
+              <Link href="https://drive.google.com/file/d/1TK88QikqPaPzhGkIt_FUtkRoKO0sQiLq/view?usp=sharing" className="glightbox pulsating-play-btn">
                 {/* You can also add an icon or text for the link if needed */}
               </Link>
             </div>

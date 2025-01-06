@@ -190,6 +190,35 @@ def getUser(request):
             return Response({"error": "Invalid username or password"}, status=401)  # Unauthorized
 
 
+@api_view(['GET', 'POST'])  # Allow both GET and POST methods
+def getPatient(request):
+    if request.method == 'POST':
+        pateintid = request.data.get("patientid")
+       
+    elif request.method == 'GET':
+        pateintid = request.GET.get("patientid")
+        
+
+
+    print(pateintid)
+    #print(password)
+
+        # Call the stored procedure or query your database
+    proc_name = "GetUser"
+    params = {
+           
+            "patientid": pateintid,
+            "show":3    }
+
+    results = execute_stored_procedure(proc_name, params, True)
+    print(results)
+    if results:
+            return Response(results, status=200)  # Return user data if found
+    else:
+            return Response({"error": "Invalid username or password"}, status=401)  # Unauthorized
+
+
+
 
 @api_view(['GET', 'POST'])  # Allow both GET and POST methods
 def getUser1(request):
@@ -353,12 +382,85 @@ def predict(request):
 def getDoctor(request):
      if request.method=='GET':
           proc_name="GetDoctor"
-          results = execute_stored_procedure(proc_name)
+          params = {
+         
+            #"Username": username,
+            "show":1
+           
+             }
+
+          results = execute_stored_procedure(proc_name,params)
           print("haram",results)
           if results:
                 return Response({"result":results}, status=200)  # Return user data if found
           else:
                 return Response({"result":False}, status=200)  # Return user data if found
+            
+@api_view(['GET', 'POST'])  # Allow both GET and POST methods
+def getDoctorfordesease(request):
+    if request.method=='POST':
+          searchquerry = request.data.get("searchquerry")
+    elif request.method == 'GET':
+          searchquerry = request.GET.get("searchquerry")     
+    print(searchquerry)
+    proc_name="GetDoctor"
+    params = {
+         
+            "searchquerry": searchquerry,
+            "show":2,
+           
+             }
+
+    results = execute_stored_procedure(proc_name,params,True)
+    print("haram",results)
+    if results:
+        return Response({"result":results}, status=200)  # Return user data if found
+    else:
+            return Response({"result":False}, status=200)  # Return user data if found
+            
+@api_view(['GET', 'POST'])  # Allow both GET and POST methods
+def getbloodpressure(request):
+    if request.method=='POST':
+          patientid = request.data.get("patientid")
+    elif request.method == 'GET':
+          patientid = request.GET.get("patientid")     
+    print(patientid)
+    proc_name="GetReadings"
+    params = {
+         
+            "PatientID":patientid ,
+            "show":1,
+           
+             }
+
+    results = execute_stored_procedure(proc_name,params,True)
+    print("haram",results)
+    if results:
+        return Response({"result":results}, status=200)  # Return user data if found
+    else:
+            return Response({"result":False}, status=200)  # Return user data if found
+            
+@api_view(['GET', 'POST'])  # Allow both GET and POST methods
+def getbloodsugar(request):
+    if request.method=='POST':
+          patientid = request.data.get("patientid")
+    elif request.method == 'GET':
+          patientid = request.GET.get("patientid")     
+    print(patientid)
+    proc_name="GetReadings"
+    params = {
+         
+            "PatientID":patientid ,
+            "show":2,
+           
+             }
+
+    results = execute_stored_procedure(proc_name,params,True)
+    print("haram",results)
+    if results:
+        return Response({"result":results}, status=200)  # Return user data if found
+    else:
+            return Response({"result":False}, status=200)  # Return user data if found
             
 @api_view(['GET', 'POST'])
 def getDoctorbyId(request, id):  # Make sure id is passed here
