@@ -118,6 +118,7 @@ function handleBloodPressureChange() {
             <>
               <div>
                 <h3>Blood Pressure Readings</h3>
+                {bloodpressure1?(
                 <DataTable
                   columns={bloodPressureColumns}
                   data={bloodpressure1}
@@ -126,11 +127,23 @@ function handleBloodPressureChange() {
                   highlightOnHover
                   responsive
                   paginationPerPage={5}
-                />
-              </div>
+                />):(
+<>
+<p>
 
+  No Blood pressure readings available.
+</p>
+
+</>
+
+
+                )
+}
+              </div>
+                
               <div>
                 <h3>Blood Sugar Readings</h3>
+                {bloodsuagar1?(
                 <DataTable
                   columns={bloodSugarColumns}
                   data={bloodsuagar1}
@@ -139,16 +152,26 @@ function handleBloodPressureChange() {
                   highlightOnHover
                   responsive
                   paginationPerPage={5}
-                />
+                />):(
+                  
+                  <>
+                  
+                  <p>
+                  No Blood Sugar available
+                  </p></>)}
               </div>
 
               <div className={styles.chartscontainer}>
+                {bloodpressure1&&
                 <div className={styles.chart}>
                   <BloodPressureChart bloodpressure1={bloodpressure1} />
-                </div>
+                </div>}
+                {
+                  bloodsuagar1&&
                 <div className={styles.chart}>
                   <BloodSugarChart bloodsugar1={bloodsuagar1} />
                 </div>
+}
               </div>
             </>
           )}
