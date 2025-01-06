@@ -20,6 +20,7 @@ from django.urls import path,include
 
 from myapp import views
 from myapp.views import getDoctor
+from myapp.views import getDoctorbyId
 urlpatterns = [
     path('admin/', admin.site.urls),
    path('getUser/',views.getUser,name="getUser"),

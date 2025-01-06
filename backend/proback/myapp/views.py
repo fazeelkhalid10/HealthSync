@@ -462,4 +462,17 @@ def getbloodsugar(request):
     else:
             return Response({"result":False}, status=200)  # Return user data if found
             
-                                        
+@api_view(['GET', 'POST'])
+def getDoctorbyId(request, id):  # Make sure id is passed here
+    if request.method == 'GET':
+        doctor_id = id  # Use the captured id
+        params = {
+            "id": doctor_id
+        }
+
+        proc_name = "getDoctorbyId"
+        results = execute_stored_procedure(proc_name, params)
+        if results:
+            return Response({"result": results}, status=200)  # Return data if found
+        else:
+            return Response({"result": False}, status=404)  # Doctor not found

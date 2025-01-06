@@ -1,11 +1,14 @@
 import Header from "@/components/Header"
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/router"
 
 export default function DoctorsPage({doctors}) {
+  const r=useRouter()
   
 
   return (
+    <>
     <main className="min-h-screen bg-white">
         <Header/>
       {/* Hero Section - 60vh height */}
@@ -64,8 +67,9 @@ export default function DoctorsPage({doctors}) {
                     {doctor.Name}
                   </h3>
                   <p className="text-gray-500 mb-3 text-sm">{doctor.Specialization}</p>
-                  <button className="w-full bg-[#1977cc;] text-white py-2 px-6 rounded-full font-medium hover:bg-[#2DA8F0] transition-colors duration-300">
+                  <button onClick={()=>{r.push(`/doctors/doctorDetail/${doctor.DID}`)}} className="w-full bg-[#1977cc;] text-white py-2 px-6 rounded-full font-medium hover:bg-[#2DA8F0] transition-colors duration-300">
                     View Profile
+                    
                   </button>
                 </div>
               </div>
@@ -74,6 +78,7 @@ export default function DoctorsPage({doctors}) {
         </div>
       </section>
     </main>
+    </>
   )
 }
 export async function getStaticProps() {
