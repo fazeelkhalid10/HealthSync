@@ -5,3 +5,4 @@ frontend/package.json
 *.json
 backend/proback/myapp/utils.py
 backend/proback/proback/settings.py
+backend/proback/proback/__pycache__/settings.cpython-310.pyc
