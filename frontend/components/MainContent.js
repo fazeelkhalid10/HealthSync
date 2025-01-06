@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { useSession,signOut } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { ClipboardPenLine , Gem ,Ellipsis} from "lucide-react";
+
 
 export default function MainPage() {
   const { data: session, status } = useSession();
@@ -82,23 +84,38 @@ if(true){
               <div className="d-flex flex-column justify-content-center">
                 <div className="row gy-4">
                   <div className="col-xl-4 d-flex align-items-stretch">
-                    <div className="icon-box" data-aos="zoom-out" data-aos-delay="300">
-                      <i className="bi bi-clipboard-data"></i>
+                    <div className="icon-box" data-aos="zoom-out" data-aos-delay="300"  style={{
+                     display: "flex", 
+                     flexDirection: "column", 
+                     alignItems: "center", 
+                     textAlign: "center" // Ensures text alignment
+                     }} >
+                    <ClipboardPenLine size={34} color=" #0066cc"  />
                       <h4>Our Reviews!</h4>
                       <p>User-friendly interface and quick access to top-notch healthcare services. Five stars!</p>
                       <p>Amazing platform! Booking an appointment was never this easy. Highly recommend it to everyone.</p>
                     </div>
                   </div>
                   <div className="col-xl-4 d-flex align-items-stretch">
-                    <div className="icon-box" data-aos="zoom-out" data-aos-delay="400">
-                      <i className="bi bi-gem"></i>
-                      <h4>Our Achievements</h4>
+                    <div className="icon-box" data-aos="zoom-out" data-aos-delay="400"  style={{
+                    display: "flex", 
+                    flexDirection: "column", 
+                    alignItems: "center", 
+                    textAlign: "center" // Ensures text alignment
+                      }}>
+                      <Gem size={34} color="#0066cc" />
+                      <h4>Achievements</h4>
                       <p>Recognized as a leading platform in healthcare innovation, empowering thousands to access quality medical services seamlessly.</p>
                     </div>
                   </div>
                   <div className="col-xl-4 d-flex align-items-stretch">
-                    <div className="icon-box" data-aos="zoom-out" data-aos-delay="500">
-                      <i className="bi bi-inboxes"></i>
+                    <div className="icon-box" data-aos="zoom-out" data-aos-delay="500"  style={{
+                      display: "flex", 
+                      flexDirection: "column", 
+                      alignItems: "center", 
+                      textAlign: "center" // Ensures text alignment
+                      }}>
+                      <Ellipsis size={34} color="#0066cc" />
                       <h4>Find More</h4>
                       <p>    Discover a wealth of healthcare resources, expert advice, and tailored solutions for your well-being.</p>
                     </div>
