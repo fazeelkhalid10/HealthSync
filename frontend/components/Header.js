@@ -198,7 +198,7 @@ export default function Header() {
 
               {session ? (
                 <>
-                  <li> <Link href="/patientdashboard">
+                  <li> <Link href="/patientdashboard" className={router.pathname === "/patientdashboard" ? "active" : ""}>
                       <CircleUserRound size={35} />
                        </Link></li>
                   <li>
