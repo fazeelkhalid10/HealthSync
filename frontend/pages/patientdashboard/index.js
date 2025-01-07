@@ -209,7 +209,7 @@ const Dashboard = ({ patientData, bloodpressure1, bloodsugar1 }) => {
               <div className={styles.profileCard}>
                 <div className={styles.profileImageContainer}>
                   <Image
-                    src="/doc3.jpg?height=200&width=200"
+                    src="/doc1.png?height=200&width=200"
                     alt="Profile Picture"
                     width={200}
                     height={200}
