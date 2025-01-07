@@ -60,6 +60,7 @@ export default function DoctorsPage({doctors}) {
                 <div className="p-4 text-center">
                   <h3 className="text-lg font-semibold text-[#1e3a8a] mb-1">
                     {doctor.Name}
+                   
                   </h3>
                   <p className="text-gray-500 mb-3 text-sm">{doctor.Specialization}</p>
                   <button onClick={()=>{r.push(`/doctors/doctorDetail/${doctor.DID}`)}} className="w-full bg-[#1977cc;] text-white py-2 px-6 rounded-full font-medium hover:bg-[#2DA8F0] transition-colors duration-300">

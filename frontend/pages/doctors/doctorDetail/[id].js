@@ -67,6 +67,7 @@ export default function DoctorDetails({ doctor }) {
 
 export async function getServerSideProps(context) {
   const { id } = context.params; // Get the doctor ID from the URL
+
   try {
     const res = await fetch(`http://127.0.0.1:8000/getDoctorbyId/${id}/`);
     const data = await res.json();

@@ -465,7 +465,9 @@ def getbloodsugar(request):
 @api_view(['GET', 'POST'])
 def getDoctorbyId(request, id):  # Make sure id is passed here
     if request.method == 'GET':
+        
         doctor_id = id  # Use the captured id
+        
         params = {
             "id": doctor_id
         }
