@@ -3,7 +3,7 @@ import { useSession, getSession, signOut } from 'next-auth/react';
 import styles from '/styles/Dashboard.module.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import BloodPressureChart from '@/components/BloodPressureChart';
+import BloodPressureChart from '@/components/Bloodpressurechart';
 import BloodSugarChart from '@/components/BloodSugarChart';
 import DataTable from 'react-data-table-component';
 import Image from 'next/image';
