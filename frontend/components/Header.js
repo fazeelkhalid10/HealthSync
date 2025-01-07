@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
 import { useState } from 'react';
+import { Mail, Smartphone,Search ,CircleUserRound } from 'lucide-react';
 
 const specializationsList = [
   'Allergist', 'Cardiologist', 'Dermatologist', 'Endocrinologist', 'Gastroenterologist',
@@ -65,10 +66,12 @@ export default function Header() {
         <div className="container d-flex justify-content-between">
           <div className="contact-info d-flex align-items-center">
             <i className="bi bi-envelope d-flex align-items-center">
+              <Mail size={16} />
               <Link href="mailto:contact@example.com">HealthSync@gmail.com</Link>
             </i>
             <i className="bi bi-phone d-flex align-items-center ms-4">
-              <span>+3337 897 980</span>
+              <Smartphone size={16} />
+              <span>0304 5595 148</span>
             </i>
           </div>
           <div className="social-links d-none d-md-flex align-items-center">
@@ -135,13 +138,21 @@ export default function Header() {
                     value={specialization}
                     onChange={handleInputChange}
                     onKeyDown={handleKeyDown} // Add keydown handler for navigation
-                    placeholder="Search by Specialization"
+                    placeholder="Specialized Search"
                     className="form-control me-2"
-                    style={{ width: '250px', height: '40px' }}
+                    style={{ width: '200px', height: '40px' }}
                   />
-                 <button className="w-full bg-[#1977cc] text-white py-2 px-2 rounded-full font-medium hover:bg-[#2DA8F0] transition-colors duration-300">
-                      Search
-                  </button>
+                 <button
+                 className="transition-colors duration-300"
+                 style={{
+                 color: '#1977cc',
+                 }}
+                 onMouseEnter={(e) => (e.target.style.color = '#1565c0')}
+                 onMouseLeave={(e) => (e.target.style.color = '#1977cc')}
+                 >
+                 <Search size={16} />
+                 </button>
+
 
 
                 </form>
@@ -187,10 +198,18 @@ export default function Header() {
 
               {session ? (
                 <>
-                  <li><Link href="/patientdashboard" className="cta-btn">Account</Link></li>
+                  <li> <Link href="/patientdashboard">
+                      <CircleUserRound size={35} />
+                       </Link></li>
                   <li>
-                    <button className='btn btn-primary' onClick={() => signOut({ callbackUrl: '/login' })}>Sign Out</button>
-                  </li>
+                       <Link 
+                       href="/login" 
+                       onClick={() => signOut({ callbackUrl: '/login' })} 
+                       className="cta-btn"
+                       >
+                       Sign Out
+                       </Link>
+                   </li>
                 </>
               ) : (
                 <li><Link href="/login" className="cta-btn">Login</Link></li>
