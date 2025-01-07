@@ -66,10 +66,43 @@ export default function DiseaseBody() {
     'Psoriasis': ['Dermatologist'],
     'Impetigo': ['Dermatologist'],
 };
-  const handleVoiceInput = () => {
-    setIsListening(!isListening)
-    // Implement actual voice recognition logic here
+const handleVoiceInput = () => {
+  if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+    setErrorMessage('Voice input is not supported in this browser. Please use a modern browser like Chrome.');
+    return;
   }
+
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = new SpeechRecognition();
+
+  recognition.lang = 'en-US';
+  recognition.interimResults = false; // Only return final results
+  recognition.maxAlternatives = 1;
+
+  if (!isListening) {
+    recognition.start();
+    setIsListening(true);
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setVoiceInput(transcript);
+      setIsListening(false);
+    };
+
+    recognition.onerror = (event) => {
+      setErrorMessage(`Voice recognition error: ${event.error}`);
+      setIsListening(false);
+    };
+
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+  } else {
+    recognition.stop();
+    setIsListening(false);
+  }
+};
+
 
   const handleSubmit = (e) => {
     e.preventDefault()

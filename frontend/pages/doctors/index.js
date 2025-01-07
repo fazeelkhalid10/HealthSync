@@ -1,4 +1,5 @@
-import Header from "@/components/Header"
+import Header from "@/components/Header";
+import Footer from '../../components/Footer';
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -14,17 +15,11 @@ export default function DoctorsPage({doctors}) {
       {/* Hero Section - 60vh height */}
       <section className="relative h-[60vh] bg-gradient-to-br from-white to-sky-100 overflow-hidden">
         <div className="container mx-auto px-4 h-full">
-          <nav className="pt-8 text-sm">
-            <Link href="/" className="text-gray-600 hover:text-gray-900">
-              Home
-            </Link>
-            <span className="mx-2 text-gray-400">-</span>
-            <span className="text-sky-500">Doctors</span>
-          </nav>
+        
 
           <div className="flex items-center justify-between h-full pb-20">
             <div className="w-full md:w-1/2">
-              <h1 className="text-4xl md:text-6xl font-bold text-[#1e3a8a] mb-6">
+              <h1 className="text-4xl md:text-6xl font-bold text-[#0066cc] mb-6">
                 Our Doctors
               </h1>
               <p className="text-gray-600 text-lg max-w-xl">
@@ -79,6 +74,7 @@ export default function DoctorsPage({doctors}) {
         </div>
       </section>
     </main>
+    <Footer/>
     </>
   )
 }
