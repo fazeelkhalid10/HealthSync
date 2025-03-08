@@ -95,8 +95,8 @@ DATABASES = {
         'USER': '',  # Leave empty for Windows Authentication
         'PASSWORD': '',  # Leave empty for Windows Authentication
     #    'HOST':  r'(localdb)\MSSQLLocalDB', #change this for your pc
-    #    'HOST':  'DESKTOP-VSVECPH', #change this for your pc
-    'HOST':  r'(localdb)\ProjectModels', #change this for your pc
+       'HOST':  'DESKTOP-VSVECPH', #change this for your pc
+   # 'HOST':  r'(localdb)\ProjectModels', #change this for your pc
         'PORT': '',  # Default port for SQL Server
         'OPTIONS': {
             'driver': 'ODBC Driver 17 for SQL Server',

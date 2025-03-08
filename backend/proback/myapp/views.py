@@ -245,9 +245,72 @@ def getUser1(request):
     else:
             return Response({"error": "Invalid username or password"}, status=401)  # Unauthorized
 
+DAY_MAPPING = {
+    "Monday": 1, "Tuesday": 2, "Wednesday": 3, "Thursday": 4,
+    "Friday": 5, "Saturday": 6, "Sunday": 7,
+}
 
+@api_view(['POST'])
+def insetschedule(request):
+    try:
+        # Extract data from request
+        doctor_id = request.data.get("doctorid")
+        day_name = request.data.get("day")
+        start_time = request.data.get("startTime")
+        end_time = request.data.get("endTime")
+        is_available = request.data.get("isAvailable", True)
+
+        # Validate required fields
+        if not all([doctor_id, day_name, start_time, end_time]):
+            return Response({"error": "doctorid, day, startTime, and endTime are required"}, status=400)
+
+        # Convert day name to integer (1-7)
+        day_of_week = DAY_MAPPING.get(day_name.capitalize())
+        if day_of_week is None:
+            return Response({"error": "Invalid day name"}, status=400)
+
+        # Define stored procedure parameters
+        proc_name = "ManageAvailableSlots"
+        params = {
+            "Show": 1,
+            "DayOfWeek": day_of_week,
+            "ModifiedBy": doctor_id,
+            "IsActive": is_available,
+            "StartTime": start_time,
+            "EndTime": end_time,
+            "DoctorId": doctor_id,
+        }
+
+        # Call stored procedure
+        result = execute_stored_procedure(proc_name, params, is_select=False)
+        
+        return Response(result, status=201)
+
+    except Exception as e:
+        print("Error inserting schedule:", e)
+        return Response({"error": str(e)}, status=400)
 #repository function
 def execute_stored_procedure(proc_name, params=None, is_select=True):
+    """
+    The function `execute_stored_procedure` executes a stored procedure with optional parameters and
+    returns the results if it is a SELECT statement.
+    
+    :param proc_name: The `proc_name` parameter in the `execute_stored_procedure` function is the name
+    of the stored procedure that you want to execute in your database. It is a required parameter and
+    should be a string representing the name of the stored procedure
+    :param params: The `params` parameter in the `execute_stored_procedure` function is a dictionary
+    that contains the input parameters for the stored procedure being executed. Each key-value pair in
+    the dictionary represents a parameter name and its corresponding value that will be passed to the
+    stored procedure
+    :param is_select: The `is_select` parameter in the `execute_stored_procedure` function is a boolean
+    parameter that determines whether the stored procedure being executed is a SELECT query or not. If
+    `is_select` is set to `True`, the function will execute the stored procedure as a SELECT query and
+    return the, defaults to True (optional)
+    :return: If the `is_select` parameter is `True`, the function will return a list of dictionaries
+    where each dictionary represents a row of the result set from executing the stored procedure. If the
+    `is_select` parameter is `False`, the function will return a dictionary with a "status" key
+    indicating success and a "message" key with a success message.
+    """
     
     with connection.cursor() as cursor:
         if params is None:

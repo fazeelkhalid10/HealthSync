@@ -24,7 +24,10 @@ export default function Header() {
       router.push(`/doctors/${specialization}`);
     }
   };
-
+  const getDashboardUrl = () => {
+    if (!session) return "/login"
+    return session.user.role === "doctor" ? "/doctordashboard" : "/patientdashboard"
+  }
   const handleInputChange = (e) => {
     const input = e.target.value;
     setSpecialization(input);
@@ -198,7 +201,7 @@ export default function Header() {
 
               {session ? (
                 <>
-                  <li> <Link href="/patientdashboard" className={router.pathname === "/patientdashboard" ? "active" : ""}>
+                  <li> <Link href={getDashboardUrl()} className={router.pathname ===getDashboardUrl() ? "active" : ""}>
                       <CircleUserRound size={35} />
                        </Link></li>
                   <li>
@@ -207,7 +210,7 @@ export default function Header() {
                        onClick={() => signOut({ callbackUrl: '/login' })} 
                        className="cta-btn"
                        >
-                       Sign Out
+                       Sign Out  {session.user.role}
                        </Link>
                    </li>
                 </>
