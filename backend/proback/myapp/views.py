@@ -530,7 +530,7 @@ def getDoctorbyId(request, id):  # Make sure id is passed here
     if request.method == 'GET':
         
         doctor_id = id  # Use the captured id
-        
+        print(doctor_id)
         params = {
             "id": doctor_id
         }
