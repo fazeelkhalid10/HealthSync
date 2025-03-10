@@ -20,12 +20,26 @@ export default function MedicalChatbot() {
       });
 
       const data = await res.json();
-      setResponse(data.response || "No response from chatbot.");
+      
+      // Process response to remove <think> and format properly
+      const cleanedResponse = formatResponse(data.response);
+      setResponse(cleanedResponse || "No response from chatbot.");
     } catch (error) {
       setResponse("Error fetching response.");
     }
 
     setLoading(false);
+  };
+
+  // Function to clean and format the response
+  const formatResponse = (text) => {
+    // Remove everything before the first occurrence of "</think>"
+    const cleanedText = text.replace(/<think>.*?<\/think>/s, "").trim();
+
+    // Replace symptom list with bullet points
+    return cleanedText
+      .replace(/- \*\*(.*?)\*\*/g, "• **$1**") // Format bullet points properly
+      .replace(/\n/g, "<br />"); // Preserve line breaks
   };
 
   return (
@@ -52,7 +66,7 @@ export default function MedicalChatbot() {
       {response && (
         <div className="mt-4 bg-gray-200 p-4 rounded">
           <h2 className="font-semibold">Response:</h2>
-          <p>{response}</p>
+          <p dangerouslySetInnerHTML={{ __html: response }}></p> 
         </div>
       )}
     </div>
