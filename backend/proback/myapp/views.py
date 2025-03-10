@@ -3,6 +3,11 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.db import connection
 from django.shortcuts import render
+import os
+import requests
+import pinecone
+from dotenv import load_dotenv
+from sentence_transformers import SentenceTransformer
 
 
 
@@ -541,3 +546,84 @@ def getDoctorbyId(request, id):  # Make sure id is passed here
             return Response({"result": results}, status=200)  # Return data if found
         else:
             return Response({"result": False}, status=404)  # Doctor not found
+
+
+load_dotenv()
+
+
+import os
+from pinecone import Pinecone, ServerlessSpec
+
+# Manually set your Pinecone API key (Replace 'your-api-key' with the actual key)
+PINECONE_API_KEY = "pcsk_5147hL_Nyi83YgNMhmFRYEXKW2X77txWoSuekYFeXPhDGs3cUv5u1myUC2mioafnJiQtgv"  # Replace with your actual key
+
+# Initialize Pinecone
+pc = Pinecone(api_key=PINECONE_API_KEY)
+index = pc.Index("medical-chatbot")
+
+# Example: List indexes
+print(pc.list_indexes().names())
+index = pc.Index("medical-chatbot")
+
+# Your index name
+embedding_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
+
+# Groq API credentials
+GROQ_API_KEY = "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"
+GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
+@api_view(["POST"])
+def medical_chatbot(request):
+    """Retrieves relevant context from Pinecone & queries DeepSeek LLM."""
+    data=request.data
+    print("hehehe",data)
+    user_query = data.get("query", "").strip()
+    print(user_query)
+
+    if not user_query:
+        return Response({"error": "Message is required"}, status=400)
+
+    # Step 1: Convert user query into vector & retrieve relevant documents
+    context = retrieve_relevant_docs(user_query)
+    print("your context is ",context)
+    # Step 2: Send the retrieved context + user query to DeepSeek LLM via Groq API
+    headers = {
+        "Authorization": f"Bearer {GROQ_API_KEY}",
+        "Content-Type": "application/json"
+    }
+
+    payload = {
+    "model": "deepseek-r1-distill-llama-70b",
+    "messages": [
+        {"role": "system", "content": "You are a medical chatbot that provides concise and accurate health information. Keep responses brief and to the point."},
+        {"role": "user", "content": f"Context: {context} \nQuestion: {user_query}"}
+    ],
+    "temperature": 0.3,  # Lower temperature for more deterministic responses
+    "max_tokens": 100  # Limit response length (adjust as needed)
+}
+
+    response = requests.post(GROQ_API_URL, json=payload, headers=headers)
+
+    if response.status_code != 200:
+        print("Error response:", response.json())  # Print the error message
+        return Response({"error": response.json()},  status=response.status_code)
+
+# Extract the chatbot's reply from DeepSeek's response
+    response_json = response.json()
+    llm_reply = response_json.get("choices", [{}])[0].get("message", {}).get("content", "No response received")
+
+    print("Final chatbot response:", llm_reply)  # Debugging: print the actual chatbot reply
+
+    return Response({"response": llm_reply}, status=200) 
+
+   
+
+
+def retrieve_relevant_docs(query):
+    """Fetches top relevant documents from Pinecone using all-MiniLM-L6-v2 embeddings."""
+    query_embedding = embedding_model.encode(query).tolist()  # Convert query to vector
+
+    # Retrieve top 3 relevant docs from Pinecone
+    results = index.query(vector=query_embedding, top_k=3, include_metadata=True)
+
+    context_texts = [match["metadata"]["chunk_text"] for match in results["matches"]]
+    return " ".join(context_texts) if context_texts else "No relevant information found."
