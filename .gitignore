@@ -11,3 +11,6 @@ backend/proback/proback/settings.py
 backend/proback/proback/settings.py
 backend/proback/myapp/utils.py
 backend/proback/proback/settings.py
+*.pyc
+__pycache__/
+
