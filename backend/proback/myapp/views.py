@@ -592,19 +592,20 @@ def medical_chatbot(request):
     }
 
     payload = {
-        "model": "deepseek-r1-distill-llama-70b",
-        "messages": [
-            {"role": "system", "content": "You are a medical chatbot that provides accurate health information."},
-            {"role": "user", "content": f"Context: {context} \nQuestion: {user_query}"}
-        ],
-        "temperature": 0.7
-    }
+    "model": "deepseek-r1-distill-llama-70b",
+    "messages": [
+        {"role": "system", "content": "You are a medical chatbot that provides concise and accurate health information. Keep responses brief and to the point."},
+        {"role": "user", "content": f"Context: {context} \nQuestion: {user_query}"}
+    ],
+    "temperature": 0.3,  # Lower temperature for more deterministic responses
+    "max_tokens": 100  # Limit response length (adjust as needed)
+}
 
     response = requests.post(GROQ_API_URL, json=payload, headers=headers)
 
     if response.status_code != 200:
         print("Error response:", response.json())  # Print the error message
-        return Response({"error": response.json()}, status=response.status_code)
+        return Response({"error": response.json()},  status=response.status_code)
 
 # Extract the chatbot's reply from DeepSeek's response
     response_json = response.json()
