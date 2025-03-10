@@ -81,7 +81,7 @@ export default function DoctorsPage({doctors}) {
 export async function getStaticProps() {
   const result=await fetch('http://127.0.0.1:8000/getDoctor/')
   const data=await result.json()
-
+  console.log(data);
  
 return{
  props:{
