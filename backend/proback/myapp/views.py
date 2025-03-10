@@ -598,7 +598,7 @@ def medical_chatbot(request):
         {"role": "user", "content": f"Context: {context} \nQuestion: {user_query}"}
     ],
     "temperature": 0.3,  # Lower temperature for more deterministic responses
-    "max_tokens": 100  # Limit response length (adjust as needed)
+    
 }
 
     response = requests.post(GROQ_API_URL, json=payload, headers=headers)
