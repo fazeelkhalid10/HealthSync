@@ -9,10 +9,10 @@ biobert = BiobertEmbedding()
 
 # Load models
 # Use raw string for Windows paths
-lstm_model_path = r'D:\Projects\HealthSync\backend\proback\myapp\lstm_model.keras' #change address for your pc
-svm_model_path = r'D:\Projects\HealthSync\backend\proback\myapp\svm_model.pkl'   #change address for your pc
-# lstm_model_path = r'C:\Users\Hassan\Desktop\git\HealthSync\backend\proback\myapp\lstm_model.keras'
-# svm_model_path = r'C:\Users\Hassan\Desktop\git\HealthSync\backend\proback\myapp\svm_model.pkl'
+# lstm_model_path = r'D:\Projects\HealthSync\backend\proback\myapp\lstm_model.keras' #change address for your pc
+# svm_model_path = r'D:\Projects\HealthSync\backend\proback\myapp\svm_model.pkl'   #change address for your pc
+lstm_model_path = r'C:\Users\Hassan\Desktop\git\HealthSync\backend\proback\myapp\lstm_model.keras'
+svm_model_path = r'C:\Users\Hassan\Desktop\git\HealthSync\backend\proback\myapp\svm_model.pkl'
 #lstm_model_path = r'C:\Users\rutab\Desktop\Ai Project\HealthSync\backend\proback\myapp\lstm_model.keras' #change address for your pc
 #svm_model_path = r'C:\Users\rutab\Desktop\Ai Project\HealthSync\backend\proback\myapp\svm_model.pkl'   #change address for your pc
 feature_extractor = load_model(lstm_model_path)

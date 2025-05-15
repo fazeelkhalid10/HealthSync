@@ -1,3 +1,5 @@
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import { useState } from "react";
 
 export default function MedicalChatbot() {
@@ -43,6 +45,9 @@ export default function MedicalChatbot() {
   };
 
   return (
+    <>
+    <Header/>
+    
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
       <h1 className="text-2xl font-bold mb-4">Medical Chatbot</h1>
 
@@ -70,5 +75,7 @@ export default function MedicalChatbot() {
         </div>
       )}
     </div>
+    <Footer/>
+    </>
   );
 }
