@@ -524,7 +524,7 @@ def getbloodsugar(request):
              }
 
     results = execute_stored_procedure(proc_name,params,True)
-    print("haram",results)
+   
     if results:
         return Response({"result":results}, status=200)  # Return user data if found
     else:
@@ -575,7 +575,7 @@ GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 def medical_chatbot(request):
     """Retrieves relevant context from Pinecone & queries DeepSeek LLM."""
     data=request.data
-    print("hehehe",data)
+    
     user_query = data.get("query", "").strip()
     print(user_query)
 
@@ -594,7 +594,7 @@ def medical_chatbot(request):
     payload = {
     "model": "deepseek-r1-distill-llama-70b",
     "messages": [
-        {"role": "system", "content": "You are a medical chatbot that provides concise and accurate health information. Keep responses brief and to the point."},
+        {"role": "system", "content": "You are a medical chatbot that provides concise and accurate health information. Keep responses brief and to the point. Only answer thing related to medical, question other than medical give me response like Thats beyond my expertise"},
         {"role": "user", "content": f"Context: {context} \nQuestion: {user_query}"}
     ],
     "temperature": 0.3,  # Lower temperature for more deterministic responses

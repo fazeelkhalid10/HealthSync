@@ -201,7 +201,7 @@ export default function DoctorDetails({ doctor }) {
                 <div className="md:w-2/3 space-y-4 text-center md:text-left">
                   <div className="bg-gray-700/20 px-4 py-2 rounded-md">{doctor[0].Specialization}</div>
                   <h1 className="text-4xl md:text-5xl font-bold">{doctor[0].Name}</h1>
-                  <p className="text-xl opacity-90">ID: {doctor[0].DID}</p>
+                 
                   <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                     <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-md">
                       <Star className="w-4 h-4" />

@@ -1,16 +1,17 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 import { useState } from "react";
 
 export default function MedicalChatbot() {
-  const [query, setQuery] = useState("");
-  const [response, setResponse] = useState("");
-  const [loading, setLoading] = useState(false);
+  
+  const [query, setQuery] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [chatHistory, setChatHistory] = useState([])
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setResponse("");
+    e.preventDefault()
+    if (!query.trim()) return
+
+    setChatHistory([...chatHistory, { type: "user", content: query }])
+    setLoading(true)
 
     try {
       const res = await fetch("/api/medical-chatbot", {
@@ -19,35 +20,39 @@ export default function MedicalChatbot() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ query }),
-      });
+      })
 
-      const data = await res.json();
-      
-      // Process response to remove <think> and format properly
-      const cleanedResponse = formatResponse(data.response);
-      setResponse(cleanedResponse || "No response from chatbot.");
+      const data = await res.json()
+      const cleanedResponse = formatResponse(data.response)
+
+      setChatHistory((prev) => [
+        ...prev,
+        {
+          type: "bot",
+          content: cleanedResponse || "No response from chatbot.",
+        },
+      ])
     } catch (error) {
-      setResponse("Error fetching response.");
+      const errorMessage = "Error fetching response."
+      setChatHistory((prev) => [...prev, { type: "bot", content: errorMessage }])
     }
 
-    setLoading(false);
-  };
+    setLoading(false)
+    setQuery("")
+  }
 
-  // Function to clean and format the response
-  const formatResponse = (text) => {
-    // Remove everything before the first occurrence of "</think>"
-    const cleanedText = text.replace(/<think>.*?<\/think>/s, "").trim();
+ const formatResponse = (text) => {
+  if (!text) return ""
 
-    // Replace symptom list with bullet points
-    return cleanedText
-      .replace(/- \*\*(.*?)\*\*/g, "• **$1**") // Format bullet points properly
-      .replace(/\n/g, "<br />"); // Preserve line breaks
-  };
+  // Remove everything inside <think>...</think> (case-insensitive and multiline)
+  const cleanedText = text.replace(/<think[\s\S]*?<\/think>/gi, "").trim()
+
+  return cleanedText
+    .replace(/- \*\*(.*?)\*\*/g, "• **$1**") // Optional: keep if formatting bullets
+    .replace(/\n/g, "<br />")               // Optional: format new lines
+}
 
   return (
-    <>
-    <Header/>
-    
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
       <h1 className="text-2xl font-bold mb-4">Medical Chatbot</h1>
 
@@ -73,9 +78,30 @@ export default function MedicalChatbot() {
           <h2 className="font-semibold">Response:</h2>
           <p dangerouslySetInnerHTML={{ __html: response }}></p> 
         </div>
-      )}
+      </footer>
+
+      {/* Prose styles */}
+      <style jsx global>{`
+        .prose {
+          max-width: 65ch;
+          color: inherit;
+        }
+        .prose p {
+          margin-top: 1.25em;
+          margin-bottom: 1.25em;
+        }
+        .prose strong {
+          font-weight: 600;
+        }
+        .prose-sm {
+          font-size: 0.875rem;
+          line-height: 1.5;
+        }
+        .prose-sm p {
+          margin-top: 1em;
+          margin-bottom: 1em;
+        }
+      `}</style>
     </div>
-    <Footer/>
-    </>
   );
 }

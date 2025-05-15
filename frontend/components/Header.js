@@ -114,25 +114,7 @@ export default function Header() {
               <li><Link href="/ChatBot" className={router.pathname === "/ChatBot" ? "active" : ""}>
                   ChatBot
                 </Link></li>
-              <li className="dropdown">
-                <Link href="#"><span>Services</span> <i className="bi bi-chevron-down toggle-dropdown"></i></Link>
-                <ul>
-                  <li><Link href="#">Dropdown 1</Link></li>
-                  <li className="dropdown">
-                    <Link href="#"><span>Deep Dropdown</span> <i className="bi bi-chevron-down toggle-dropdown"></i></Link>
-                    <ul>
-                      <li><Link href="#">Deep Dropdown 1</Link></li>
-                      <li><Link href="#">Deep Dropdown 2</Link></li>
-                      <li><Link href="#">Deep Dropdown 3</Link></li>
-                      <li><Link href="#">Deep Dropdown 4</Link></li>
-                      <li><Link href="#">Deep Dropdown 5</Link></li>
-                    </ul>
-                  </li>
-                  <li><Link href="#">Dropdown 2</Link></li>
-                  <li><Link href="#">Dropdown 3</Link></li>
-                  <li><Link href="#">Dropdown 4</Link></li>
-                </ul>
-              </li>
+              
 
               <li className="search-section" style={{ position: 'relative' }}>
                 <form onSubmit={handleSearch} className="d-flex align-items-center">
