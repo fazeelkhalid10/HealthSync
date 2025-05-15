@@ -594,7 +594,7 @@ def medical_chatbot(request):
     payload = {
     "model": "deepseek-r1-distill-llama-70b",
     "messages": [
-        {"role": "system", "content": "You are a medical chatbot that provides concise and accurate health information. Keep responses brief and to the point."},
+        {"role": "system", "content": "You are a medical chatbot that provides concise and accurate health information. Keep responses brief and to the point. Only answer thing related to medical, question other than medical give me response like Thats beyond my expertise"},
         {"role": "user", "content": f"Context: {context} \nQuestion: {user_query}"}
     ],
     "temperature": 0.3,  # Lower temperature for more deterministic responses
