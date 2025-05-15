@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {Bot, MessageCircle, Activity, Clock, Heart } from 'lucide-react';
-import styles from '../styles/Chatbot.module.css'
+import styles from '../styles/Chatbot.module.css';
+import { useRouter } from 'next/router';
+
 
 
 const ChatbotBody = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const route=useRouter();
 
   const features = [
     { icon: <MessageCircle />, text: "24/7 Instant Responses" },
@@ -56,7 +59,7 @@ const ChatbotBody = () => {
            style={{ cursor: 'pointer' }} // Optional cursor style
             />
           </motion.div>
-          <motion.button 
+          <motion.button onClick={()=>{route.push('/medical-chatbot')}}
             className={styles.chatButton}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

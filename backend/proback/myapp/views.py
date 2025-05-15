@@ -524,7 +524,7 @@ def getbloodsugar(request):
              }
 
     results = execute_stored_procedure(proc_name,params,True)
-    print("haram",results)
+   
     if results:
         return Response({"result":results}, status=200)  # Return user data if found
     else:
@@ -575,7 +575,7 @@ GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 def medical_chatbot(request):
     """Retrieves relevant context from Pinecone & queries DeepSeek LLM."""
     data=request.data
-    print("hehehe",data)
+    
     user_query = data.get("query", "").strip()
     print(user_query)
 
